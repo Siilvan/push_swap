@@ -3,5 +3,7 @@ Diagnostics:
 CompileFlags:
   Add: [
     -xc,
-    -I./include/
+    -I./include
+    -I./ft_printf,
+    -I./ft_printf/libft
   ]
