@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 CC				= cc
+INCLUDES		= -I./include/ -I./ft_printf -I./ft_printf/libft
 CFLAGS			= -Wall -Wextra -Werror
 NAME			= push_swap
 SOURCES			= main.c helpers.c parse_input.c t_info.c
