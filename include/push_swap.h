@@ -13,8 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "./ft_printf/ft_printf.h"
-
+#include "ft_printf.h"
+#include "libft.h"
 
 // Not sure if this is the proper way to do it. Now when running the actual algorithm we'll have to
 // do t_info->nbrs[i], might be an issue with norm line length.

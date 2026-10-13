@@ -1,9 +1,2 @@
-Diagnostics:
-  Suppress: keyword_as_parameter
 CompileFlags:
-  Add: [
-    -xc,
-    -I./include
-    -I./ft_printf,
-    -I./ft_printf/libft
-  ]
+  Add: [-xc, -Iinclude, -Ift_printf, -Ift_printf/libft]
