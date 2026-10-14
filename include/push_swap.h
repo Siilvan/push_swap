@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/14 00:45:55 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/14 00:50:53 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	i_want_to_be_free(t_info *info);
 
 // Swaps the position of two items of a linked list.
 // This function assumes that both pointers point to the same linked list.
+// Which actually does not change anything if they dont, its just ft_swap.
 void	ft_lstswap(t_intlist *l1, t_intlist *l2);
 // Returns the second to last item in the list
 t_intlist	*ft_lstsecondtolast(t_intlist *lst);
