@@ -1,2 +1,4 @@
 *.out
 *.o
+compile_flags.txt
+push_swap
