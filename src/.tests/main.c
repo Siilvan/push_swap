@@ -19,6 +19,7 @@ int	main()
 	print_stack(stack_a, "A");
 	print_stack(stack_b, "B");
 
+	// op_reverse_rotate(&stack_a, NULL);
 	algo_simple(&stack_a, &stack_b);
 
 	printf("After:\n");

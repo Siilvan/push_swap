@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	op_rotate_helper(t_intlist **stack)
+static void	op_rrotate_helper(t_intlist **stack)
 {
 	t_intlist	*last;
 	t_intlist	*second_to_last;
@@ -26,7 +26,7 @@ static void	op_rotate_helper(t_intlist **stack)
 	*stack = last;
 }
 
-static void	op_rrotate_helper(t_intlist **stack)
+static void	op_rotate_helper(t_intlist **stack)
 {
 	t_intlist	*last;
 	t_intlist	*tmp;
@@ -42,12 +42,12 @@ static void	op_rrotate_helper(t_intlist **stack)
 
 void	op_rotate(t_intlist **stack_a, t_intlist **stack_b)
 {
-	if (stack_a && !stack_b)
-		ft_printf("ra");
-	else if (!stack_a && stack_b)
-		ft_printf("rb");
-	else if (stack_a && stack_b)
-		ft_printf("rr");
+	// if (stack_a && !stack_b)
+	// 	ft_printf("ra");
+	// else if (!stack_a && stack_b)
+	// 	ft_printf("rb");
+	// else if (stack_a && stack_b)
+	// 	ft_printf("rr");
 	if (stack_a)
 		op_rotate_helper(stack_a);
 	if (stack_b)
@@ -56,12 +56,12 @@ void	op_rotate(t_intlist **stack_a, t_intlist **stack_b)
 
 void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b)
 {
-	if (stack_a && !stack_b)
-		ft_printf("rra");
-	else if (!stack_a && stack_b)
-		ft_printf("rrb");
-	else if (stack_a && stack_b)
-		ft_printf("rrr");
+	// if (stack_a && !stack_b)
+	// 	ft_printf("rra");
+	// else if (!stack_a && stack_b)
+	// 	ft_printf("rrb");
+	// else if (stack_a && stack_b)
+	// 	ft_printf("rrr");
 	if (stack_a)
 		op_rrotate_helper(stack_a);
 	if (stack_b)

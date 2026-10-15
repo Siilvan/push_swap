@@ -37,12 +37,12 @@ static void	op_push_helper(t_intlist **stack_a, t_intlist **stack_b)
 
 void	op_swap(t_intlist *stack_a, t_intlist *stack_b)
 {
-	if (stack_a && !stack_b)
-		ft_printf("sa");
-	else if (!stack_a && stack_b)
-		ft_printf("sb");
-	else if (stack_a && stack_b)
-		ft_printf("ss");
+	// if (stack_a && !stack_b)
+	// 	ft_printf("sa");
+	// else if (!stack_a && stack_b)
+	// 	ft_printf("sb");
+	// else if (stack_a && stack_b)
+	// 	ft_printf("ss");
 	if (stack_a)
 		op_swap_helper(stack_a);
 	if (stack_b)
@@ -51,13 +51,13 @@ void	op_swap(t_intlist *stack_a, t_intlist *stack_b)
 
 void	op_push_a(t_intlist **stack_a, t_intlist **stack_b)
 {
-	ft_printf("pa");
+	// ft_printf("pa");
 	op_push_helper(stack_b, stack_a);
 }
 
 
 void	op_push_b(t_intlist **stack_a, t_intlist **stack_b)
 {
-	ft_printf("pb");
+	// ft_printf("pb");
 	op_push_helper(stack_a, stack_b);
 }
