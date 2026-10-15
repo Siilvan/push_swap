@@ -11,18 +11,15 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
-void	algo_simple(t_intlist *stack_a, t_intlist *stack_b)
+void	algo_simple(t_intlist **stack_a, t_intlist **stack_b)
 {
-	t_intlist	*max_a;
-	int			d_to_top;
+	// t_intlist	*max_a;
+	// int			d_to_top;
 
-	if (!stack_a || stack_b)
+	if (!stack_a || !stack_b || !*stack_a || *stack_b)
 		return ;
-
-	while (stack_a->content < stack_b->content)
-		op_swap(NULL, stack_b);
-
-		op_push_b(&stack_a, &stack_b);
+	op_swap(*stack_a, *stack_b);
+	op_push_b(stack_a, stack_b);
+	op_swap(*stack_a, *stack_b);
 }

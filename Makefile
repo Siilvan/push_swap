@@ -15,7 +15,7 @@ INCLUDES		= -I./include/ -I./libft/include
 CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) -g3
 NAME			= push_swap
 SOURCES_DIR		= ./src
-SOURCES			= main.c disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c
+SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c algorithms.c
 SOURCES			:= $(addprefix ./src/, $(SOURCES))
 OBJECTS			= $(SOURCES:.c=.o)
 FT_PRINTF_DIR	= ./libft

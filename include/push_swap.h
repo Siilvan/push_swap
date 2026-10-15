@@ -66,6 +66,11 @@ void	op_rotate(t_intlist **stack_a, t_intlist **stack_b);
 // Executes a reverse rotation op. (rra, rrb, rrr)
 void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
 
+// Algorithms
+
+// Simple algorithm
+void	algo_simple(t_intlist **stack_a, t_intlist **stack_b);
+
 // Computes the disorder of a stack
 double	compute_disorder(t_intlist *stack);
 int		error_exit();
