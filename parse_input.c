@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/13 14:01:54 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/13 16:07:23 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	check_numbers(char **nbrs, char *new, int index)
 		return (1);
 	while (j < index)
 	{
-		if (!ft_strncmp(nbrs[j], new, ft_strlen(new)))
+		if (ft_strncmp(nbrs[j], new, ft_strlen(new)) == 0)
 			return (1);
 		else
 			j++;
@@ -77,17 +77,21 @@ void	parse_numbers(char **nbrs, int argc, t_info *info)
 	int		*int_nbrs;
 
 	i = 0;
-	int_nbrs = NULL;
-	checked_nbrs = NULL;
+	int_nbrs = (int *)ft_calloc(sizeof(int), argc);
+	checked_nbrs = ft_calloc(sizeof(char *), argc);
+	if (!int_nbrs || !checked_nbrs)
+		error_exit(info);
 	while (i < argc)
 	{
-		if (!check_numbers(checked_nbrs, nbrs[i], i))
+		ft_printf("%s", "here");
+		if (check_numbers(checked_nbrs, nbrs[i], i) == 0)
 		{
 			checked_nbrs[i] = nbrs[i];
 			int_nbrs[i] = ft_atoi(nbrs[i]);
 		}
 		else
 			error_exit(info);
+		i++;
 	}
 	info->nbrs = int_nbrs;
 }
@@ -97,10 +101,10 @@ int	parse_input(int argc, char *args[], t_info *info)
 	int		i;
 	char	**nbrs;
 	
-	nbrs = NULL;
 	if(!ft_isdigit(args[1][0]) && ft_strncmp(args[1], "--", 2))
 		return (1);
 	i = parse_flags(argc, args, info);
+	nbrs = malloc(sizeof(char *) * (argc - (i - 1)));
 	if (!(argc - i >= 0))
 		error_exit(info);
 	else if (argc - i == 0)
@@ -110,7 +114,6 @@ int	parse_input(int argc, char *args[], t_info *info)
 		while (i < argc)
 		{
 			nbrs[i] = args[i];
-			ft_printf("here.\n");
 			i++;
 		}
 	}
