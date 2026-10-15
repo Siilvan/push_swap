@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngero <ngero@student.codam.nl>             +#+  +:+       +#+        */
+/*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 22:08:50 by ngero             #+#    #+#             */
 /*   Updated: 2026/10/14 14:25:22 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "push_swap.h"
 
 static void	op_swap_helper(t_intlist *stack)

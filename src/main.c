@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:52 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/13 13:52:17 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/15 14:09:31 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int main(int argc, char *argv[])
 {
-	t_info	*info;
+    int     *arr;
+    int     bench;
+    char    *mode;
 
-    info = new_info();
-	if (!info)
-		return (1);
-    parse_input(argc, argv, info);
-    ft_printf("%d\n", info->bench);
-    ft_printf("%s\n", info->mode);
-    for (int i = 0; i < argc - 2; i++)
+    mode = "adaptive";
+    bench = 0;
+    arr = parse_input(argc, argv, &mode, &bench);
+    ft_printf("%d\n", bench);
+    ft_printf("%s\n", mode);
+    for (int i = 0; i < 3; i++)
     {
-        ft_printf("%d\n", info->nbrs[i]);
+        ft_printf("%d\n", arr[i]);
     }
-    i_want_to_be_free(info);
     return(0);
 }

@@ -6,21 +6,27 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 11:43:11 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/14 00:34:57 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/15 13:54:48 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stddef.h>
 
-void	i_want_to_be_free(t_info *info)
+int	error_exit()
+{
+	ft_putendl_fd("Error", 2);
+	exit(1);
+}
+
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	free(info->nbrs);
-	free(info->mode);
-	free(info);
+	while ((s1[i] == s2[i]) && s1[i] && s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
 
 t_intlist	*get_stack_from_arr(int *arr, size_t size)

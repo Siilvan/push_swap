@@ -1,2 +1,2 @@
 CompileFlags:
-  Add: [-xc, -Iinclude, -Ift_printf, -Ift_printf/libft]
+  Add: [-xc, -Iinclude, -Ilibft/include]

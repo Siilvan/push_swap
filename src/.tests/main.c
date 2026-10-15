@@ -1,5 +1,5 @@
 #include "ft_tester.h"
-#include "push_swap.h"
+#include "../../include/push_swap.h"
 #include <stdlib.h>
 #include <time.h>
 
