@@ -6,20 +6,20 @@
 #    By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/13 13:02:26 by sgroenve          #+#    #+#              #
-#    Updated: 2026/10/14 00:31:46 by ngero            ###   ########.fr        #
+#    Updated: 2026/10/15 13:53:41 by sgroenve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC				= cc
-INCLUDES		= -I./include/ -I./ft_printf -I./ft_printf/libft
+INCLUDES		= -I./include/ -I./libft/include
 CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) -g3
 NAME			= push_swap
 SOURCES_DIR		= ./src
-SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c t_info.c
+SOURCES			= main.c disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c
 SOURCES			:= $(addprefix ./src/, $(SOURCES))
 OBJECTS			= $(SOURCES:.c=.o)
-FT_PRINTF_DIR	= ./ft_printf
-FT_PRINTF		= $(FT_PRINTF_DIR)/libftprintf.a
+FT_PRINTF_DIR	= ./libft
+FT_PRINTF		= $(FT_PRINTF_DIR)/libft.a
 
 # TEST
 TEST_SOURCES 	= main.c tester_utils.c

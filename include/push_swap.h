@@ -6,22 +6,14 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/14 00:45:55 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/15 13:54:10 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "ft_printf.h"
 #include "libft.h"
-
-typedef struct s_info
-{
-	int		bench;
-	int		*nbrs;
-	char	*mode;
-}	t_info;
 
 typedef struct s_intlist {
 	struct s_intlist	*next;
@@ -37,8 +29,9 @@ typedef struct s_intlist {
 
 // Creates a linked list from an array of integers.
 t_intlist	*get_stack_from_arr(int *arr, size_t size);
-// Frees an info struct or wtv
-void	i_want_to_be_free(t_info *info);
+// strcmp
+int		ft_strcmp(char *s1, char *s2);
+
 
 // Linked list utils
 
@@ -72,7 +65,7 @@ void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
 
 // Computes the disorder of a stack
 double	compute_disorder(t_intlist *stack);
-int		parse_input(int argc, char *args[], t_info *info);
-t_info	*new_info(void);
+int		error_exit();
+int		*parse_input(int argc, char *args[], char **mode, int *bench);
 
 #endif

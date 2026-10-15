@@ -6,117 +6,101 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 09:29:05 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/15 14:09:57 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	error_exit(t_info *info)
+void	handle_flag(char *arg, char **mode, int *bench)
 {
-	i_want_to_be_free(info);
-	ft_putendl_fd("Error", 2);
+	if(!ft_strcmp(arg, "--bench"))
+		*bench = 1;
+	else if (!ft_strcmp(arg, "--simple") || !ft_strcmp(arg, "--medium"))
+		*mode = arg + 2;
+	else if (!ft_strcmp(arg, "--complex") || !ft_strcmp(arg, "--adaptive"))
+		*mode = arg + 2;
+	else
+		error_exit(NULL);
+}
+
+int	check_number_format(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
 	return (1);
 }
 
-int	parse_flags (int argc, char *args[], t_info *info)
+void	check_dupes(char **nbrs, int i)
 {
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (!ft_strncmp(args[i], "--", 2))
-		{
-			if(!ft_strncmp(args[i], "--bench", 8))
-				info->bench = 1;
-			else if (!ft_strncmp(args[i], "--simple", 9))
-				info->mode = args[i] + 2;
-			else if (!ft_strncmp(args[i], "--medium", 9))
-				info->mode = args[i] + 2;
-			else if (!ft_strncmp(args[i], "--complex", 10))
-				info->mode = args[i] + 2;
-			else if (!ft_strncmp(args[i], "--adaptive", 11))
-				info->mode = args[i] + 2;
-			else
-				error_exit(info);
-		}
-		else
-			return (i);
-		i++;
-	}
-	return (i);
-}
-
-int	check_numbers(char **nbrs, char *new, int index)
-{
-	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
-	if (new[i] == '-')
-		i++;
-	while(ft_isdigit(new[i]) && new[i])
-		i++;
-	if (!(new[i] == '\0'))
-		return (1);
-	while (j < index)
+	while (j < i)
 	{
-		if (ft_strncmp(nbrs[j], new, ft_strlen(new)) == 0)
-			return (1);
-		else
-			j++;
+		if (ft_strcmp(nbrs[j], nbrs[i]) == 0)
+			error_exit();
+		j++;
 	}
-	return (0);
 }
-void	parse_numbers(char **nbrs, int argc, t_info *info)
+
+int	*parse_numbers(char **nbrs)
 {
-	int		i;
-	char	**checked_nbrs;
-	int		*int_nbrs;
+	int	i;
+	int	*nbr_arr;
 
 	i = 0;
-	int_nbrs = (int *)ft_calloc(sizeof(int), argc);
-	checked_nbrs = ft_calloc(sizeof(char *), argc);
-	if (!int_nbrs || !checked_nbrs)
-		error_exit(info);
-	while (i < argc)
+	while(nbrs[i])
+		i++;
+	nbr_arr = ft_calloc(i, sizeof(int));
+	i = 0;
+	while (nbrs[i])
 	{
-		ft_printf("%s", "here");
-		if (check_numbers(checked_nbrs, nbrs[i], i) == 0)
-		{
-			checked_nbrs[i] = nbrs[i];
-			int_nbrs[i] = ft_atoi(nbrs[i]);
-		}
-		else
-			error_exit(info);
+		if (check_number_format(nbrs[i]) == 0)
+			error_exit();
+		check_dupes(nbrs, i);
+		nbr_arr[i] = ft_atoi(nbrs[i]);
 		i++;
 	}
-	info->nbrs = int_nbrs;
+	return (nbr_arr);
 }
 
-int	parse_input(int argc, char *args[], t_info *info)
+int	*parse_input(int argc, char *args[], char **mode, int *bench)
 {
 	int		i;
+	int		j;
 	char	**nbrs;
-	
-	if(!ft_isdigit(args[1][0]) && ft_strncmp(args[1], "--", 2))
-		return (1);
-	i = parse_flags(argc, args, info);
-	nbrs = malloc(sizeof(char *) * (argc - (i - 1)));
-	if (!(argc - i >= 0))
-		error_exit(info);
-	else if (argc - i == 0)
+
+	i = 1;
+	while (i < argc && !ft_strncmp(args[i], "--", 2))
+	{
+		handle_flag(args[i], mode, bench);
+		i++;
+	}
+	if (i >= argc)
+		error_exit(NULL);
+	j = 0;
+	if (argc - i == 1)
 		nbrs = ft_split(args[i], ' ');
 	else
 	{
+		nbrs = ft_calloc((argc - i) + 1, sizeof(char *));
+		if (!nbrs)
+			return (NULL);
 		while (i < argc)
-		{
-			nbrs[i] = args[i];
-			i++;
-		}
+			nbrs[j++] = args[i++];
+		nbrs[j] = 0;
 	}
-	parse_numbers(nbrs, argc - i, info);
-	return (0);
+	return (parse_numbers(nbrs));
 }
