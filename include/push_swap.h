@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/14 00:50:53 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/14 14:25:42 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ t_intlist	*ft_intlstlast(t_intlist *lst);
 void	ft_intlstadd_back(t_intlist **lst, t_intlist *new);
 // Creates a new list item
 t_intlist	*ft_intlstnew(int content);
+// Returns the size of a list.
+int	ft_intlstsize(t_intlist *lst);
 // Clears (frees) an entire list. Sets the pointer back to 0
 void	ft_intlstclear(t_intlist **lst);
 
@@ -63,9 +65,9 @@ void	ft_intlstclear(t_intlist **lst);
 // e.g. `op_swap(&stack_a, NULL)` will execute `sa`
 void	op_swap(t_intlist *stack_a, t_intlist *stack_b);
 // Pushes the item at the top of stack b onto the top of stack a
-void	op_push_a(t_intlist *stack_a, t_intlist *stack_b);
+void	op_push_a(t_intlist **stack_a, t_intlist **stack_b);
 // Pushes the item at the top of stack a onto the top of stack b
-void	op_push_b(t_intlist *stack_a, t_intlist *stack_b);
+void	op_push_b(t_intlist **stack_a, t_intlist **stack_b);
 // Executes a rotation op. (ra, rb, rr)
 void	op_rotate(t_intlist **stack_a, t_intlist **stack_b);
 // Executes a reverse rotation op. (rra, rrb, rrr)

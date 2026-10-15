@@ -70,7 +70,7 @@ t_intlist	*generate_random_stack(size_t size)
 		arr[j] = tmp;
 		i--;
 	}
-	return (get_stack_from_arr(arr, size));
+	return (get_stack_from_arr(&arr, size));
 }
 
 int	test_stack_disorder(t_intlist *stack, int expected)

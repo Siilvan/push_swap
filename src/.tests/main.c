@@ -10,6 +10,6 @@ int	main()
 	{
 		t_intlist *stack = generate_random_stack(rand() % 15);
 		print_stack(stack, "Stack");
-		free(stack);
+		ft_intlstclear(&stack);
 	}
 }
