@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 14:09:57 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/15 16:27:02 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	handle_flag(char *arg, char **mode, int *bench)
 	else if (!ft_strcmp(arg, "--complex") || !ft_strcmp(arg, "--adaptive"))
 		*mode = arg + 2;
 	else
-		error_exit(NULL);
+		error_exit(NULL, NULL, NULL);
 }
 
 int	check_number_format(char *str)
@@ -50,7 +50,7 @@ void	check_dupes(char **nbrs, int i)
 	while (j < i)
 	{
 		if (ft_strcmp(nbrs[j], nbrs[i]) == 0)
-			error_exit();
+			error_exit(NULL, NULL, NULL);
 		j++;
 	}
 }
@@ -68,7 +68,7 @@ int	*parse_numbers(char **nbrs)
 	while (nbrs[i])
 	{
 		if (check_number_format(nbrs[i]) == 0)
-			error_exit();
+			error_exit(NULL, NULL, NULL);
 		check_dupes(nbrs, i);
 		nbr_arr[i] = ft_atoi(nbrs[i]);
 		i++;
@@ -89,7 +89,7 @@ int	*parse_input(int argc, char *args[], char **mode, int *bench)
 		i++;
 	}
 	if (i >= argc)
-		error_exit(NULL);
+		error_exit(NULL, NULL, NULL);
 	j = 0;
 	if (argc - i == 1)
 		nbrs = ft_split(args[i], ' ');
@@ -97,7 +97,7 @@ int	*parse_input(int argc, char *args[], char **mode, int *bench)
 	{
 		nbrs = ft_calloc((argc - i) + 1, sizeof(char *));
 		if (!nbrs)
-			return (NULL);
+			error_exit(NULL, NULL, NULL);
 		while (i < argc)
 			nbrs[j++] = args[i++];
 		nbrs[j] = 0;

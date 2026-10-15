@@ -6,15 +6,21 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 11:43:11 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 13:54:48 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/15 16:36:54 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stddef.h>
 
-int	error_exit()
+int	error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr)
 {
+	if (stack_a)
+		ft_intlstclear(stack_a);
+	if (stack_b)
+		ft_intlstclear(stack_b);
+	if (oparr)
+		clear_oparr(oparr);
 	ft_putendl_fd("Error", 2);
 	exit(1);
 }

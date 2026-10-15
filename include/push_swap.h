@@ -6,20 +6,42 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 13:54:10 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/15 17:42:47 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define SA  0
+# define SB  1
+# define SS  2
+# define PA  3
+# define PB  4
+# define RA  5
+# define RB  6
+# define RR  7
+# define RRA 8
+# define RRB 9
+# define RRR 10
 
-#include "libft.h"
+# include "libft.h"
 
 typedef struct s_intlist {
 	struct s_intlist	*next;
 	int					content;
 }	t_intlist;
 
+// typedef struct operationarray_s {
+// 	int *arr;
+// 	int n_op;
+// 	size_t arr_size;
+// } oparr_t;
+
+typedef struct operationarray_s {
+	int arr[2000];
+	int n_op;
+	struct operationarray_s *next;
+} t_oparr;
 // On the subject of operation counting:
 // We essentially have at worst 10 operations, so we could just have a int op_counter[10], and each
 // index represents the count of a specific op. E.g. sa, sa, sb -> op_counter[0] += 2; op_counter[1] += 1;
@@ -68,7 +90,12 @@ void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
 
 // Computes the disorder of a stack
 double	compute_disorder(t_intlist *stack);
-int		error_exit();
+int		error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr);
 int		*parse_input(int argc, char *args[], char **mode, int *bench);
+
+// Operation array stuff
+t_oparr	*oparrnew(void);
+void	clear_oparr(t_oparr **start);
+int	ft_add_op(t_oparr *node, int op);
 
 #endif
