@@ -45,12 +45,27 @@ int	test_stack_order(t_intlist *stack)
 	return (1);
 }
 
+int	test_stack_disorder(t_intlist *stack, int expected)
+{
+	int	real_disorder;
+
+	real_disorder = compute_disorder(stack);
+	if (expected != real_disorder)
+	{
+		PRINT_ERR("Real disorder: %d\nExpected disorder: %d\n", real_disorder, expected);
+		print_stack(stack, "Stack");
+		return (0);
+	}
+	return (1);
+}
+
 t_intlist	*generate_random_stack(size_t size)
 {
-	int	i;
-	int	j;
-	int	tmp;
-	int	*arr;
+	int			i;
+	int			j;
+	int			tmp;
+	int			*arr;
+	t_intlist	*new;
 
 	arr = malloc(size * sizeof(int));
 	if (!arr)
@@ -70,19 +85,8 @@ t_intlist	*generate_random_stack(size_t size)
 		arr[j] = tmp;
 		i--;
 	}
-	return (get_stack_from_arr(&arr, size));
+	new = get_stack_from_arr(arr, size);
+	free(arr);
+	return (new);
 }
 
-int	test_stack_disorder(t_intlist *stack, int expected)
-{
-	int	real_disorder;
-
-	real_disorder = compute_disorder(stack);
-	if (expected != real_disorder)
-	{
-		PRINT_ERR("Real disorder: %d\nExpected disorder: %d\n", real_disorder, expected);
-		print_stack(stack, "Stack");
-		return (0);
-	}
-	return (1);
-}
