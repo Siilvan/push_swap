@@ -36,6 +36,7 @@ static void	op_rrotate_helper(t_intlist **stack)
 	tmp = (*stack)->next;
 	last = ft_intlstlast(*stack);
 	last->next = *stack;
+	(*stack)->next = 0;
 	*stack = tmp;
 }
 

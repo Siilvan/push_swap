@@ -55,6 +55,7 @@ void	op_push_a(t_intlist **stack_a, t_intlist **stack_b)
 	op_push_helper(stack_b, stack_a);
 }
 
+
 void	op_push_b(t_intlist **stack_a, t_intlist **stack_b)
 {
 	ft_printf("pb");
