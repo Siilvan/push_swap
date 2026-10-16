@@ -6,16 +6,15 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 16:06:18 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 17:49:46 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 09:15:14 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_result(t_oparr *oparr, int bench)
+void	print_result(t_oparr *oparr)
 {
 	char	**op_names;
-	int		counter[11];
 	int		i;
 	t_oparr	*temp;
 
@@ -37,7 +36,12 @@ void	print_result(t_oparr *oparr, int bench)
 	}
 }
 
-void	bench_result(t_oparr *oparr)
+void	manage_result(t_oparr *oparr)
 {
-	
+	if (oparr->n_op <= 50)
+		print_result(oparr);
+	else
+	{
+		ft_printf("%d\n", oparr->n_op - 1);
+	}
 }

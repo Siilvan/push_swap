@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 17:42:47 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 10:39:47 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,9 @@ int		*parse_input(int argc, char *args[], char **mode, int *bench);
 t_oparr	*oparrnew(void);
 void	clear_oparr(t_oparr **start);
 int	ft_add_op(t_oparr *node, int op);
+
+//algorthims
+char	*adaptive_choose(double disorder)
+
 
 #endif

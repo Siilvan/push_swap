@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 09:50:25 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 09:49:08 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 09:32:30 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_flag	*ft_newformat(void)
 	newflag->space = 0;
 	newflag->minus = 0;
 	newflag->width = 0;
-	newflag->converto = 0;
+	newflag->to = 0;
 	newflag->precision = 0;
 	return (newflag);
 }

@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 17:19:37 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 09:49:08 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 11:02:45 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	ft_putptr_printf(va_list args, t_flag *flag)
 	if (!n)
 	{
 		if (flag->width > 5 && !flag->minus)
-			ft_putchar_n(' ', flag->width - 5);
-		ft_putstr_n("(nil)", 5);
+			ft_putchar_n(flag->fd, ' ', flag->width - 5);
+		ft_putstr_n(flag->fd, "(nil)", 5);
 		if (flag->width > 5 && flag->minus)
-			ft_putchar_n(' ', flag->width - 5);
+			ft_putchar_n(flag->fd, ' ', flag->width - 5);
 		if (flag->width > 5)
 			return (flag->width);
 		else

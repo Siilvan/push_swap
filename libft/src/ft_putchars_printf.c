@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 14:10:10 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 09:49:08 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 10:59:24 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ int	ft_putchar_printf(va_list args, t_flag *flag)
 	int		size;
 
 	size = 1;
-	if (flag->converto == 'c')
+	if (flag->to == 'c')
 		c = va_arg(args, int);
 	else
 		c = '%';
 	if (!flag->minus)
-		ft_putchar_n(' ', flag->width - 1);
+		ft_putchar_n(flag->fd, ' ', flag->width - 1);
 	ft_putchar_fd(c, 1);
 	if (flag->minus)
-		ft_putchar_n(' ', flag->width - 1);
+		ft_putchar_n(flag->fd, ' ', flag->width - 1);
 	if (flag->width)
 		size = flag->width;
 	return (size);
@@ -49,10 +49,10 @@ int	ft_putstr_printf(va_list args, t_flag *flag)
 	if (flag->precision >= 0 && flag->dot && flag->precision < strlen)
 		strlen = flag->precision;
 	if (!flag->minus)
-		ft_putchar_n(' ', flag->width - strlen);
-	ft_putstr_n(str, strlen);
+		ft_putchar_n(flag->fd, ' ', flag->width - strlen);
+	ft_putstr_n(flag->fd, str, strlen);
 	if (flag->minus)
-		ft_putchar_n(' ', flag->width - strlen);
+		ft_putchar_n(flag->fd, ' ', flag->width - strlen);
 	if (strlen < flag->width)
 		size = flag->width;
 	else

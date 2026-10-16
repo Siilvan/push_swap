@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 10:06:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 09:39:11 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 11:03:59 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-# define CONVERSIONS	"cspdiuxX%"
+# define CONVERSIONS	"fcspdiuxX%"
 
 typedef struct s_flags
 {
@@ -31,7 +31,8 @@ typedef struct s_flags
 	int		hash;
 	int		space;
 	int		plus;
-	char	converto;
+	int		fd;
+	char	to;
 }	t_flag;
 
 typedef struct s_list
@@ -84,19 +85,21 @@ t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(void	*content);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-int		ft_putchar_n(char c, int n);
-int		ft_putstr_n(char *str, int len);
-int		ft_digitbase_count(long n, int base_len);
-int		ft_format(char *str, va_list args);
 int		ft_printf(const char *format, ...);
+int		ft_fdprintf(int fd, const char *format, ...);
+int		ft_putchar_n(int fd, char c, int n);
+int		ft_putstr_n(int fd, char *str, int len);
+int		int_base(long n, int base_len);
+int		ft_format(int fd, char *str, va_list args);
 int		ft_handle(va_list args, t_flag *flag);
 int		ft_putstr_printf(va_list args, t_flag *flag);
 int		ft_putptr_printf(va_list args, t_flag *flag);
 int		ft_putnbr_printf(va_list args, t_flag *flag);
 int		ft_putunbr_printf(va_list args, t_flag *flag);
+int		ft_putfloat_printf(va_list args, t_flag *flag);
 int		ft_putchar_printf(va_list args, t_flag *flag);
 void	ft_check_rules(t_flag *flag);
-void	ft_putnbr_base(unsigned long int n, char *base);
+void	ft_putnbr_base(int fd, unsigned long int n, char *base);
 void	ft_flagnbr(t_flag *flag, char *base, long int n, int needed);
 t_flag	*ft_newformat(void);
 
