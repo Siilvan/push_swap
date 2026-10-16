@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 17:42:47 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 11:27:55 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,11 @@ void	op_push_b(t_intlist **stack_a, t_intlist **stack_b);
 void	op_rotate(t_intlist **stack_a, t_intlist **stack_b);
 // Executes a reverse rotation op. (rra, rrb, rrr)
 void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
+
+// Algorithms
+
+// Simple algorithm
+void	algo_simple(t_intlist **stack_a, t_intlist **stack_b);
 
 // Computes the disorder of a stack
 double	compute_disorder(t_intlist *stack);
