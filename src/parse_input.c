@@ -6,13 +6,15 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 17:07:41 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 18:27:31 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "stdlib.h"
+#include <stddef.h>
 
-void	handle_flag(char *arg, char **mode, int *bench)
+int	handle_flag(char *arg, char **mode, int *bench)
 {
 	if(!ft_strcmp(arg, "--bench"))
 		*bench = 1;
@@ -21,7 +23,8 @@ void	handle_flag(char *arg, char **mode, int *bench)
 	else if (!ft_strcmp(arg, "--complex") || !ft_strcmp(arg, "--adaptive"))
 		*mode = arg + 2;
 	else
-		error_exit(NULL, NULL, NULL);
+		return (0);
+	return (1);
 }
 
 int	check_number_format(char *str)
@@ -42,65 +45,51 @@ int	check_number_format(char *str)
 	return (1);
 }
 
-void	check_dupes(char **nbrs, int i)
+int	get_numbers_array(size_t size, char **argv, int **arr)
 {
-	int	j;
+	size_t	i;
+	size_t	dup_i;
+	int		number;
 
-	j = 0;
-	while (j < i)
+	i = 0;
+	*arr = malloc(size * sizeof(int));
+	if (!*arr)
+		return (0);
+	while (i < size)
 	{
-		if (ft_strcmp(nbrs[j], nbrs[i]) == 0)
-			error_exit(NULL, NULL, NULL);
-		j++;
+		if (!check_number_format(argv[i]))
+			return (0);
+		number = ft_atoi(argv[i]);
+		dup_i = 0;
+		while (dup_i < i)
+			if ((*arr)[dup_i++] == number)
+				return (0);
+		(*arr)[i] = ft_atoi(argv[i]);
+		i++;
 	}
+	return (1);
 }
 
-int	*parse_numbers(char **nbrs)
+int	parse_input(int argc, char **argv, t_userinput **user_input)
 {
 	int	i;
-	int	*nbr_arr;
 
-	i = 0;
-	while(nbrs[i])
-		i++;
-	nbr_arr = ft_calloc(i, sizeof(int));
-	i = 0;
-	while (nbrs[i])
-	{
-		if (check_number_format(nbrs[i]) == 0)
-			error_exit(NULL, NULL, NULL);
-		check_dupes(nbrs, i);
-		nbr_arr[i] = ft_atoi(nbrs[i]);
-		i++;
-	}
-	return (nbr_arr);
-}
-
-int	*parse_input(int argc, char *args[], char **mode, int *bench)
-{
-	int		i;
-	int		j;
-	char	**nbrs;
-
+	*user_input = malloc(sizeof(t_userinput));
+	if (!*user_input)
+		return (0);
+	(*user_input)->mode = "adaptive";
+	(*user_input)->bench = 0;
 	i = 1;
-	while (i < argc && !ft_strncmp(args[i], "--", 2))
-	{
-		handle_flag(args[i], mode, bench);
-		i++;
-	}
+	while (i < argc && !ft_strncmp(argv[i], "--", 2))
+		if (!handle_flag(argv[i++], &(*user_input)->mode, &(*user_input)->bench))
+			return (0);
 	if (i >= argc)
-		error_exit(NULL, NULL, NULL);
-	j = 0;
-	if (argc - i == 1)
-		nbrs = ft_split(args[i], ' ');
-	else
+		return (0);
+	(*user_input)->arr_size = argc - i;
+	if (!get_numbers_array(argc - i, &argv[i], &(*user_input)->arr))
 	{
-		nbrs = ft_calloc((argc - i) + 1, sizeof(char *));
-		if (!nbrs)
-			error_exit(NULL, NULL, NULL);
-		while (i < argc)
-			nbrs[j++] = args[i++];
-		nbrs[j] = 0;
+		free((*user_input)->arr);
+		return (0);
 	}
-	return (parse_numbers(nbrs));
+	return (1);
 }

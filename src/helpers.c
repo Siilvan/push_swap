@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 11:43:11 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 16:04:59 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 17:53:19 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr)
 	if (oparr)
 		clear_oparr(&oparr);
 	ft_putendl_fd("Error", 2);
-	exit(1);
+	return (0);
 }
 
 int	ft_strcmp(char *s1, char *s2)
