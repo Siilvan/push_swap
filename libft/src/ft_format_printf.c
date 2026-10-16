@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format.c                                        :+:      :+:    :+:   */
+/*   ft_format_printf.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 15:52:37 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 09:49:08 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 10:57:45 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_precision(char *str, va_list args, t_flag *flag)
 	}
 }
 
-int	ft_format(char *str, va_list args)
+int	ft_format(int fd, char *str, va_list args)
 {
 	t_flag	*flags;
 	int		count;
@@ -82,17 +82,18 @@ int	ft_format(char *str, va_list args)
 	flags = ft_newformat();
 	if (flags == NULL)
 		return (0);
+	flags->fd = fd;
 	ft_findwidth(str, args, flags);
 	ft_flags(str, flags);
 	while (!ft_strchr(CONVERSIONS, *str) && *str != '.')
 		str++;
-	if (flags->converto == 0 && *str == '.')
+	if (flags->to == 0 && *str == '.')
 	{
 		ft_precision(str, args, flags);
 		while (!ft_strchr(CONVERSIONS, *str))
 			str++;
 	}
-	flags->converto = *str;
+	flags->to = *str;
 	ft_check_rules(flags);
 	count = ft_handle(args, flags);
 	free(flags);
