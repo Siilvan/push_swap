@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:52 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 17:08:37 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 18:15:18 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	select_algo(int bench, char *mode, int *nbrs)
 	t_oparr		*oparr;
 
 	stack_a = get_stack_from_arr(nbrs, 5);
-	stack_b = get_stack_from_arr(nbrs, 5);
+	stack_b = NULL;
 	oparr = oparrnew();
-	if (stack_a == NULL || stack_b == NULL || oparr == NULL)
+	if (stack_a == NULL || oparr == NULL)
 		error_exit(stack_a, stack_b, oparr);
 	disorder = compute_disorder(stack_a);
 	if (!ft_strcmp(mode, "simple"))
@@ -62,4 +62,13 @@ char	*adaptive_choose(double disorder)
 		return ("medium");
 	else
 		return ("complex");
+}
+
+void	ft_printstack(t_intlist *stack)
+{
+	while (stack)
+    {
+        ft_printf("%d (rank %d)\n", stack->content, stack->rank);
+        stack = stack->next;
+    }
 }

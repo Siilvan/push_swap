@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 12:55:54 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 16:56:28 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 18:14:49 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	sort_cpyarr(int *cpy, int n)
 		j = 0;
 		while (j < n - i - 1)
 		{
-			if (cpy[j] > cpy[j - 1])
+			if (cpy[j] > cpy[j + 1])
 			{
 				save = cpy[j];
 				cpy[j] = cpy[j + 1];
@@ -61,6 +61,8 @@ void	assign_rank(t_intlist *stack_a, int n)
 	t_intlist	*temp;
 
 	cpy = create_cpyarr(stack_a, n);
+	if (!cpy)
+		return;
 	sort_cpyarr(cpy, n);
 	temp = stack_a;
 	while(temp)
@@ -88,14 +90,13 @@ void	algo_medium_prt1(t_intlist **a, t_intlist **b, t_oparr *oparr)
 
 	i = 0;
 	current_chunk = 1;
+	oparr->n_op = 1;
 	chunk_size = ft_sqrt(ft_intlstsize(*a));
 	while (*a)
 	{
-	ft_printf("here\n");
 		if ((*a)->rank < current_chunk * chunk_size)
 		{
-			op_push_a(a, b);
-			ft_add_op(oparr, PA);
+			op_push_b(a, b);
 			if ((*b)->rank < (current_chunk * chunk_size) - (chunk_size / 2))
 				op_rotate(NULL, b);
 			i++;
@@ -114,24 +115,23 @@ void	algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr)
 	int	nbr_amount;
 	int	top_rank;
 
+	if (!a || !b || !*a || *b)
+		return ;
 	nbr_amount = ft_intlstsize(*a);
 	top_rank = nbr_amount - 1;
 	assign_rank(*a, nbr_amount);
 	algo_medium_prt1(a, b, oparr);
-	ft_printf("here\n");
 	while (*b)
 	{
 		if ((*b)->rank == top_rank)
 		{
 			op_push_a(a, b);
-			// ft_add_op(oparr, PA);
 			top_rank--;
 		}
-		op_rotate(NULL, b);
+		else
+			op_rotate(NULL, b);
+		if (top_rank < 0)
+			break;
 	}
-	for (int i = 0; i < nbr_amount - 1; i++)
-	{
-		ft_printf("%d\n", (*a)->content);
-		op_push_a(a, b);
-	}
+	ft_printstack(*a);
 }
