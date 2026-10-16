@@ -1,4 +1,5 @@
 *.out
 *.o
+*.a
 compile_flags.txt
 push_swap
