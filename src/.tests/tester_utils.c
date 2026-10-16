@@ -2,7 +2,6 @@
 #include "push_swap.h"
 #include <stddef.h>
 #include <stdio.h>
-#include <stdlib.h>
 
 void	print_stack(t_intlist *stack, const char *stack_name)
 {

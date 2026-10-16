@@ -1,7 +1,6 @@
 #include "ft_tester.h"
 #include "libft.h"
 #include "push_swap.h"
-#include <stdlib.h>
 #include <time.h>
 
 int	main()

@@ -6,11 +6,40 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 16:09:23 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/15 17:48:16 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 14:44:15 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_oparr_back(t_oparr **lst, t_oparr *new)
+{
+	t_oparr	*temp;
+
+	temp = *lst;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		while (temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = new;
+	}
+}
+
+t_oparr	*ft_oparrlast(t_oparr *lst)
+{
+	t_oparr	*temp;
+
+	temp = lst;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	return (temp);
+}
 
 t_oparr	*oparrnew(void)
 {
@@ -21,15 +50,14 @@ t_oparr	*oparrnew(void)
 		return (NULL);
 	new->n_op = 0;
 	new->next = NULL;
+	return (new);
 }
 
 void	clear_oparr(t_oparr **start)
 {
 	t_oparr *tmp;
 
-	if (!start)
-		return;
-	while (tmp != NULL)
+	while (*start != NULL)
 	{
 		tmp = (*start)->next;
 		free(*start);
@@ -49,10 +77,10 @@ int	ft_add_op(t_oparr *node, int op)
 		if (!new)
 			return (-1);
 		new->n_op = node->n_op;
-		ft_lstadd_back(&node, new);
+		ft_oparr_back(&node, new);
 	}
 	if ((node->n_op / 2000) > 0)
-		new = ft_lstlast(node);
+		new = ft_oparrlast(node);
 	new->arr[(node->n_op % 100)] = op;
 	new->n_op += 1;
 	return (0);

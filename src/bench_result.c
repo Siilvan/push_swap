@@ -6,16 +6,15 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 08:59:56 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 11:24:01 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 14:16:12 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*bench_counter(t_oparr *oparr)
+void	bench_counter(t_oparr *oparr, int counter[11])
 {
 	int		i;
-	int		counter[11];
 	long	op_left;
 	t_oparr	*temp;
 
@@ -33,16 +32,15 @@ int	*bench_counter(t_oparr *oparr)
 		counter[temp->arr[i]] += 1;
 		i++;
 	}
-	return (counter);
 }
 
 void	bench_result(t_oparr *oparr, char *mode, double disorder)
 {
 	char	*pre;
-	char	adaptive;
-	int		*cnt;
+	char	*adaptive;
+	int		cnt[11];
 
-	cnt = bench_counter(oparr);
+	bench_counter(oparr, cnt);
 	pre = "[bench] ";
 	adaptive = adaptive_choose(disorder);
 	ft_fdprintf(2, "%sdisorder:   %f%%\n", pre, disorder);

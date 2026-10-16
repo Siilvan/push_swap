@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 11:27:08 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/16 16:42:48 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,13 @@
 # define RRR 10
 
 # include "libft.h"
+#include <stddef.h>
+#include <stdlib.h>
 
 typedef struct s_intlist {
 	struct s_intlist	*next;
 	int					content;
+	int					rank;
 }	t_intlist;
 
 // typedef struct operationarray_s {
@@ -52,7 +55,7 @@ typedef struct operationarray_s {
 // Creates a linked list from an array of integers.
 t_intlist	*get_stack_from_arr(int *arr, size_t size);
 // strcmp
-int		ft_strcmp(char *s1, char *s2);
+int			ft_strcmp(char *s1, char *s2);
 
 
 // Linked list utils
@@ -60,51 +63,62 @@ int		ft_strcmp(char *s1, char *s2);
 // Swaps the position of two items of a linked list.
 // This function assumes that both pointers point to the same linked list.
 // Which actually does not change anything if they dont, its just ft_swap.
-void	ft_lstswap(t_intlist *l1, t_intlist *l2);
+void		ft_lstswap(t_intlist *l1, t_intlist *l2);
 // Returns the second to last item in the list
 t_intlist	*ft_lstsecondtolast(t_intlist *lst);
 // Returns the last item in the list
 t_intlist	*ft_intlstlast(t_intlist *lst);
 // Adds a list item to the back of the list
-void	ft_intlstadd_back(t_intlist **lst, t_intlist *new);
+void		ft_intlstadd_back(t_intlist **lst, t_intlist *new);
 // Creates a new list item
 t_intlist	*ft_intlstnew(int content);
 // Returns the size of a list.
-int	ft_intlstsize(t_intlist *lst);
+int			ft_intlstsize(t_intlist *lst);
 // Clears (frees) an entire list. Sets the pointer back to 0
-void	ft_intlstclear(t_intlist **lst);
+void		ft_intlstclear(t_intlist **lst);
 
 // Operations
 
 // Executes a swap op. (sa, sb, ss) depending on the specified params.
 // e.g. `op_swap(&stack_a, NULL)` will execute `sa`
-void	op_swap(t_intlist *stack_a, t_intlist *stack_b);
+void		op_swap(t_intlist *stack_a, t_intlist *stack_b);
 // Pushes the item at the top of stack b onto the top of stack a
-void	op_push_a(t_intlist **stack_a, t_intlist **stack_b);
+void		op_push_a(t_intlist **stack_a, t_intlist **stack_b);
 // Pushes the item at the top of stack a onto the top of stack b
-void	op_push_b(t_intlist **stack_a, t_intlist **stack_b);
+void		op_push_b(t_intlist **stack_a, t_intlist **stack_b);
 // Executes a rotation op. (ra, rb, rr)
-void	op_rotate(t_intlist **stack_a, t_intlist **stack_b);
+void		op_rotate(t_intlist **stack_a, t_intlist **stack_b);
 // Executes a reverse rotation op. (rra, rrb, rrr)
-void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
+void		op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
 
 // Algorithms
 
+void		select_algo(int bench, char *mode, int *nbrs);
+
 // Simple algorithm
-void	algo_simple(t_intlist **stack_a, t_intlist **stack_b);
+void		algo_simple(t_intlist **stack_a, t_intlist **stack_b);
+// Medium algorithm
+void	algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr);
+
 
 // Computes the disorder of a stack
-double	compute_disorder(t_intlist *stack);
-int		error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr);
-int		*parse_input(int argc, char *args[], char **mode, int *bench);
+double		compute_disorder(t_intlist *stack);
+int			error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr);
+int			*parse_input(int argc, char *args[], char **mode, int *bench);
 
 // Operation array stuff
-t_oparr	*oparrnew(void);
-void	clear_oparr(t_oparr **start);
-int	ft_add_op(t_oparr *node, int op);
+t_oparr		*oparrnew(void);
+void		clear_oparr(t_oparr **start);
+int			ft_add_op(t_oparr *node, int op);
+char		*adaptive_choose(double disorder);
 
-//algorthims
-char	*adaptive_choose(double disorder)
 
+// result
+void		manage_result(t_oparr *oparr);
+// benchmark
+void		bench_result(t_oparr *oparr, char *mode, double disorder);
+
+//helpers
+int	ft_sqrt(int nb);
 
 #endif

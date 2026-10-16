@@ -6,7 +6,7 @@
 #    By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/13 13:02:26 by sgroenve          #+#    #+#              #
-#    Updated: 2026/10/15 13:53:41 by sgroenve         ###   ########.fr        #
+#    Updated: 2026/10/16 14:38:37 by sgroenve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ INCLUDES		= -I./include/ -I./libft/include
 CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) -g3
 NAME			= push_swap
 SOURCES_DIR		= ./src
-SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c algorithms.c
+SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c algorithms.c\
+med_algo.c final_result.c bench_result.c main.c oparr_utils.c
 SOURCES			:= $(addprefix ./src/, $(SOURCES))
 OBJECTS			= $(SOURCES:.c=.o)
 FT_PRINTF_DIR	= ./libft
