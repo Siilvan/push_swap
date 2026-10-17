@@ -6,7 +6,11 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/10/16 18:47:30 by ngero            ###   ########.fr       */
+=======
+/*   Updated: 2026/10/17 15:12:46 by sgroenve         ###   ########.fr       */
+>>>>>>> 153b2306e9bc6cd9cf22f2fb095006a27ed48947
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +74,10 @@ int	get_numbers_array(size_t size, char **argv, int **arr)
 	return (1);
 }
 
-
 int	parse_input(int argc, char **argv, t_userinput **user_input)
 {
-	int	i;
+	int		i;
+	int		size;
 
 	if (argc < 2)
 		return (0);
@@ -88,8 +92,9 @@ int	parse_input(int argc, char **argv, t_userinput **user_input)
 			return (0);
 	if (i >= argc)
 		return (0);
-	(*user_input)->arr_size = argc - i;
-	if (!get_numbers_array(argc - i, &argv[i], &(*user_input)->arr))
+	size = argc - i;
+	(*user_input)->arr_size = size;
+	if (!get_numbers_array(size, argv + i, &(*user_input)->arr))
 	{
 		free((*user_input)->arr);
 		return (0);

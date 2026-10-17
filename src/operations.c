@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 22:08:50 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/14 14:25:22 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/17 17:47:08 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	op_push_helper(t_intlist **stack_a, t_intlist **stack_b)
 	*stack_a = tmp_a;
 }
 
-void	op_swap(t_intlist *stack_a, t_intlist *stack_b)
+void	op_swap(t_intlist *stack_a, t_intlist *stack_b, t_oparr **oparr)
 {
 	// if (stack_a && !stack_b)
 	// 	ft_printf("sa");
@@ -44,20 +44,27 @@ void	op_swap(t_intlist *stack_a, t_intlist *stack_b)
 	// else if (stack_a && stack_b)
 	// 	ft_printf("ss");
 	if (stack_a)
+	{
 		op_swap_helper(stack_a);
+		ft_add_op(oparr, SA);
+	}
 	if (stack_b)
+	{
 		op_swap_helper(stack_b);
+		ft_add_op(oparr, SB);
+	}
 }
 
-void	op_push_a(t_intlist **stack_a, t_intlist **stack_b)
+void	op_push_a(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
 	// ft_printf("pa");
 	op_push_helper(stack_b, stack_a);
+	ft_add_op(oparr, PA);
 }
 
-
-void	op_push_b(t_intlist **stack_a, t_intlist **stack_b)
+void	op_push_b(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
 	// ft_printf("pb");
 	op_push_helper(stack_a, stack_b);
+	ft_add_op(oparr, PB);
 }

@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 09:26:18 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 11:06:25 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:57:51 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_putfloat_printf(va_list args, t_flag *flag)
 		i++;
 	}
 	needed += ft_putchar_n(flag->fd, '.', 1);
-	ft_putnbr_base(1, (unsigned long)frac, "0123456789");
+	ft_putnbr_base(flag->fd, (unsigned long)frac, "0123456789");
 	if (flag->width > needed)
 		needed += flag->width - needed;
 	return (needed);

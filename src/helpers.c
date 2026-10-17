@@ -6,20 +6,20 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 11:43:11 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 17:53:19 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/17 13:57:38 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr)
+int	error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
 	if (stack_a)
-		ft_intlstclear(&stack_a);
+		ft_intlstclear(stack_a);
 	if (stack_b)
-		ft_intlstclear(&stack_b);
+		ft_intlstclear(stack_b);
 	if (oparr)
-		clear_oparr(&oparr);
+		clear_oparr(oparr);
 	ft_putendl_fd("Error", 2);
 	return (0);
 }
