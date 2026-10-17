@@ -6,7 +6,11 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/10/17 10:18:24 by sgroenve         ###   ########.fr       */
+=======
+/*   Updated: 2026/10/16 18:23:55 by ngero            ###   ########.fr       */
+>>>>>>> 31fa211fd07e53b02b2cfc9c35812742ab9cc06b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +38,19 @@ typedef struct s_intlist {
 	int					rank;
 }	t_intlist;
 
-// typedef struct operationarray_s {
-// 	int *arr;
-// 	int n_op;
-// 	size_t arr_size;
-// } oparr_t;
-
 typedef struct operationarray_s {
 	int arr[2000];
 	int n_op;
 	struct operationarray_s *next;
 } t_oparr;
+
+typedef struct s_userinput {
+	int		bench;
+	char	*mode;
+	int		*arr;
+	size_t	arr_size;
+} t_userinput;
+
 // On the subject of operation counting:
 // We essentially have at worst 10 operations, so we could just have a int op_counter[10], and each
 // index represents the count of a specific op. E.g. sa, sa, sb -> op_counter[0] += 2; op_counter[1] += 1;
@@ -93,18 +99,25 @@ void		op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
 
 // Algorithms
 
-void		select_algo(int bench, char *mode, int *nbrs);
 
 // Simple algorithm
 void		algo_simple(t_intlist **stack_a, t_intlist **stack_b);
 // Medium algorithm
-void	algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr);
+void		algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr);
 
 
 // Computes the disorder of a stack
 double		compute_disorder(t_intlist *stack);
 int			error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr);
-int			*parse_input(int argc, char *args[], char **mode, int *bench);
+
+// Parsing
+
+// Parses user input
+int			parse_input(int argc, char **argv, t_userinput **user_input);
+// Returns the number array from user input string arr
+int			get_numbers_array(size_t size, char **argv, int **arr);
+// Selects the appropriate algorithm
+int			select_algo(t_userinput *user_input);
 
 // Operation array stuff
 t_oparr		*oparrnew(void);
