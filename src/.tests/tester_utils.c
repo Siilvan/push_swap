@@ -65,35 +65,7 @@ void	print_userinput(t_userinput *ui, const char *ui_name)
 	ft_printf(", arr_size=%u }\n", ui->arr_size);
 }
 
-int	test_user_input(char **av, int ac, t_userinput *expected, const char *name)
-{
-	t_userinput	*ui1;
-
-	if (!parse_input(ac, av, &ui1))
-	{
-		if (expected)
-		{
-			PRINT_ERR(
-					ft_printf("Failed to parse user input."););
-			return (0);
-		}
-		PRINT_SUCCESS();
-		return (1);
-	}
-	if (userinput_cmp(ui1, expected))
-	{
-		PRINT_ERR(
-				ft_printf("User input differs from expected:\n\n");
-				print_userinput(expected, "expected:");
-				print_userinput(ui1, "got:");
-		);
-		return (0);
-	}
-	PRINT_SUCCESS();
-	return (1);
-}
-
-int	test_stack_order(t_intlist *stack, const char *name)
+int		is_stack_in_order(t_intlist *stack)
 {
 	t_intlist	*sk;
 
@@ -103,16 +75,113 @@ int	test_stack_order(t_intlist *stack, const char *name)
 		while (sk)
 		{
 			if (sk->content < stack->content)
-			{
-				PRINT_ERR(
-						ft_printf("Stack order is not right!\n");
-						print_stack(stack, "Stack");
-						);
 				return (0);
-			}
 			sk = sk->next;
 		}
 		stack = stack->next;
+	}
+	return (1);
+}
+
+int	test_user_input(char **av, int ac, t_userinput *expected, const char *name)
+{
+	t_userinput	*ui1;
+
+	ui1 = 0;
+	if (!parse_input(ac, av, &ui1))
+	{
+		if (expected)
+		{
+			PRINT_ERR(
+					ft_printf("Failed to parse user input.\n");
+			);
+			free_userinput(&ui1);
+			return (0);
+		}
+	}
+	else if (userinput_cmp(ui1, expected))
+	{
+		PRINT_ERR(
+				ft_printf("User input differs from expected:\n\n");
+				print_userinput(expected, "expected:");
+				print_userinput(ui1, "got:");
+		);
+		free_userinput(&ui1);
+		return (0);
+	}
+	free_userinput(&ui1);
+	PRINT_SUCCESS();
+	return (1);
+}
+
+int	test_full(int argc, const char *args, int expected, const char *name)
+{
+	t_intlist	*stack_a;
+	t_intlist	*stack_b;
+	t_oparr		*oparr;
+	t_userinput	*uinput;
+	char		**split_args;
+
+	stack_a = 0;
+	stack_b = 0;
+	oparr = 0;
+	split_args = ft_split(args, ' ');
+	if (!split_args)
+	{
+		PRINT_ERR(ft_printf("INTERNAL ERROR\nfailure from `ft_split`\n"););
+		return (0);
+	}
+	if (!parse_input(argc, split_args, &uinput))
+	{
+		ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+		if (expected)
+		{
+			PRINT_ERR(ft_printf("Input parsing failed.\n"););
+			return (0);
+		}
+		else
+		{
+			PRINT_SUCCESS();
+			return (1);
+		}
+	}
+	if (!select_algo(&stack_a, &stack_b, &oparr, &uinput))
+	{
+		ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+		if (expected)
+		{
+			PRINT_ERR(ft_printf("Running algorithm failed.\n"););
+			return (0);
+		}
+		else
+		{
+			PRINT_SUCCESS();
+			return (1);
+		}
+	}
+	if (!is_stack_in_order(stack_a))
+	{
+		PRINT_ERR(
+				ft_printf("Stack order is not right!\n");
+				print_stack(stack_a, "Stack");
+				);
+		ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+		return (0);
+	}
+	ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+	PRINT_SUCCESS();
+	return (1);
+}
+
+int	test_stack_order(t_intlist *stack, const char *name)
+{
+	if (!is_stack_in_order(stack))
+	{
+		PRINT_ERR(
+				ft_printf("Stack order is not right!\n");
+				print_stack(stack, "Stack");
+				);
+		return (0);
 	}
 	PRINT_SUCCESS();
 	return (1);

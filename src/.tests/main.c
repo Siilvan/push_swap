@@ -19,6 +19,7 @@ void	sorting__test()
 		op_arr = oparrnew();
 		algo_simple(&stack_a, &stack_b, &op_arr);
 		test_stack_order(stack_a, "Simple algorithm test");
+		ft_cleanup(&stack_a, &stack_b, &op_arr, NULL);
 		i++;
 	}
 	TEST_HEADER("MEDIUM SORTING TESTS");
@@ -32,6 +33,7 @@ void	sorting__test()
 		op_arr = oparrnew();
 		algo_medium(&stack_a, &stack_b, &op_arr);
 		test_stack_order(stack_a, "Medium algorithm tests");
+		ft_cleanup(&stack_a, &stack_b, &op_arr, NULL);
 		i++;
 	}
 	TEST_HEADER("COMPLEX SORTING TESTS");
@@ -45,6 +47,7 @@ void	sorting__test()
 		op_arr = oparrnew();
 		algo_complex(&stack_a, &stack_b, &op_arr);
 		test_stack_order(stack_a, "Complex algorithm tests");
+		ft_cleanup(&stack_a, &stack_b, &op_arr, NULL);
 		i++;
 	}
 }
@@ -52,6 +55,12 @@ void	sorting__test()
 void	user_input__test()
 {
 	TEST_HEADER("USER INPUT TESTS");
+	test_user_input(
+			(char*[]){"file", "0", "-6", "-314", "-109"},
+			5,
+			&(t_userinput){0, "adaptive", (int[]){0, -6, -314, -109}, 4},
+			"no bench, no spec single value array"
+			);
 	test_user_input(
 			(char*[]){"file", "--simple", "3", "6", "2", "-109"},
 			6,
@@ -131,10 +140,45 @@ void	user_input__test()
 			"Invalid input: letters in array"
 			);
 	test_user_input(
+			(char*[]){"file", "10", "2", "3", "10", "\t"},
+			6,
+			NULL,
+			"Invalid input: duplicates"
+			);
+	test_user_input(
 			(char*[]){"file", "--+10", "+++   20"},
 			3,
 			NULL,
 			"Invalid input: invalid atoi call"
+			);
+}
+
+void	full__test()
+{
+	TEST_HEADER("COMPLETE TESTS");
+	test_full(
+			12,
+			"./file --adaptive 3 2 1 4 5 6 -5 32 -1 -2",
+			1,
+			"Adaptive valid input"
+			);
+	test_full(
+			3,
+			"./file --complex 0",
+			1,
+			"Complex, single number stack"
+			);
+	test_full(
+			5,
+			"./file --bench --complex 0 -1",
+			1,
+			"Complex, double number stack"
+			);
+	test_full(
+			5,
+			"./file 0 -1 -9999 -9",
+			1,
+			"No algo spec, small negative stack"
 			);
 }
 
@@ -143,4 +187,5 @@ int	main()
 	srand(time(0));
 	user_input__test();
 	sorting__test();
+	full__test();
 }

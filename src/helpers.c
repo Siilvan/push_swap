@@ -12,7 +12,8 @@
 
 #include "push_swap.h"
 
-int	error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
+void	ft_cleanup(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr,
+		t_userinput **uinput)
 {
 	if (stack_a)
 		ft_intlstclear(stack_a);
@@ -20,6 +21,14 @@ int	error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 		ft_intlstclear(stack_b);
 	if (oparr)
 		clear_oparr(oparr);
+	if (uinput)
+		free_userinput(uinput);
+}
+
+int	error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr,
+		t_userinput **uinput)
+{
+	ft_cleanup(stack_a, stack_b, oparr, uinput);
 	ft_putendl_fd("Error", 2);
 	return (0);
 }

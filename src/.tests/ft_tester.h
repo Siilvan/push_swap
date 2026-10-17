@@ -27,6 +27,7 @@
 t_intlist	*generate_random_stack(size_t size);
 int			test_stack_disorder(t_intlist *stack, int expected, const char *name);
 int			test_stack_order(t_intlist *stack, const char *name);
+int			test_full(int argc, const char *args, int expected, const char *name);
 int			test_user_input(char **av, int ac, t_userinput *expected, const char *name);
 void		print_stack(t_intlist *stack, const char *stack_name);
 int			userinput_cmp(t_userinput *ui1, t_userinput *ui2);

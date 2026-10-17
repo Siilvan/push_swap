@@ -48,15 +48,17 @@ int	ops_count(t_oparr **oparr)
 	return (total);
 }
 
-void	bench_result(t_oparr **oparr, char *mode, double disorder)
+void	bench_result(t_oparr **oparr, char *mode, double disorder, int t)
 {
 	char	*pre;
 	char	*adaptive;
-	int		cnt[11];
+	int		op_count[11];
 	int		total_ops;
 
-	ft_memset(cnt, 0, 44);
-	bench_counter(oparr, cnt);
+	if (t)
+		return ;
+	ft_memset(op_count, 0, 44);
+	bench_counter(oparr, op_count);
 	pre = "[bench] ";
 	total_ops = ops_count(oparr);
 	adaptive = adaptive_choose(disorder);
@@ -67,10 +69,10 @@ void	bench_result(t_oparr **oparr, char *mode, double disorder)
 		ft_fdprintf(2, "%sstrategy:   %s\n", pre, mode);
 	ft_fdprintf(2, "%stotal_ops:  %d\n", pre, total_ops);
 	ft_fdprintf(2, "%ssa:%5d  sb:%5d  ss:%5d\n",
-		pre, cnt[SA], cnt[SB], cnt[SS]);
-	ft_fdprintf(2, "%spa:%5d  pb:%5d\n", pre, cnt[PA], cnt[PB]);
+		pre, op_count[SA], op_count[SB], op_count[SS]);
+	ft_fdprintf(2, "%spa:%5d  pb:%5d\n", pre, op_count[PA], op_count[PB]);
 	ft_fdprintf(2, "%sra:%5d  rb:%5d  rr:%5d\n",
-		pre, cnt[RA], cnt[RB], cnt[RR]);
+		pre, op_count[RA], op_count[RB], op_count[RR]);
 	ft_fdprintf(2, "%srra:%4d  rrb:%4d  rrr:%4d\n",
-		pre, cnt[RRA], cnt[RRB], cnt[RRR]);
+		pre, op_count[RRA], op_count[RRB], op_count[RRR]);
 }

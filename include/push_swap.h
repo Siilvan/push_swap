@@ -23,10 +23,12 @@
 # define RRA 8
 # define RRB 9
 # define RRR 10
-
-# include "libft.h"
+# ifndef TESTING
+#  define TESTING 0
+# endif
 # include <stddef.h>
 # include <stdlib.h>
+# include "libft.h"
 
 typedef struct s_intlist
 {
@@ -113,8 +115,6 @@ void		algo_adaptive(t_intlist **a, t_intlist **b,
 
 // Computes the disorder of a stack
 double		compute_disorder(t_intlist *stack);
-int			error_exit(t_intlist **stack_a, t_intlist **stack_b,
-				t_oparr **oparr);
 
 // Parsing
 
@@ -123,7 +123,8 @@ int			parse_input(int argc, char **argv, t_userinput **user_input);
 // Returns the number array from user input string arr
 int			get_numbers_array(size_t size, char **argv, int **arr);
 // Selects the appropriate algorithm
-int			select_algo(t_userinput *user_input);
+int			select_algo(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr, t_userinput **user_input);
 
 // Operation array stuff
 t_oparr		*oparrnew(void);
@@ -132,14 +133,21 @@ int			ft_add_op(t_oparr **node, int op);
 char		*adaptive_choose(double disorder);
 
 // result
-void		manage_result(t_oparr **oparr);
+void		manage_result(t_oparr **oparr, int testing);
 // benchmark
-void		bench_result(t_oparr **oparr, char *mode, double disorder);
+void		bench_result(t_oparr **oparr, char *mode, double disorder,
+				int t);
 
 //helpers
 int			ft_sqrt(int nb);
 void		ft_printstack(t_intlist *stack);
 void		assign_rank(t_intlist *stack_a, int n);
 void		ft_printstack(t_intlist *stack);
+void		ft_cleanup(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr, t_userinput **uinput);
+int			error_exit(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr, t_userinput **uinput);
+void		free_userinput(t_userinput **uinput);
+int			sort_stack(int argc, char *argv[]);
 
 #endif

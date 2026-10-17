@@ -39,8 +39,10 @@ int	print_result(t_oparr *oparr)
 	return (1);
 }
 
-void	manage_result(t_oparr **oparr)
+void	manage_result(t_oparr **oparr, int testing)
 {
+	if (testing)
+		return ;
 	if ((*oparr)->n_op > 0)
 		print_result(*oparr);
 }

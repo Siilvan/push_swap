@@ -12,7 +12,7 @@
 
 CC				= cc
 INCLUDES		= -I./include/ -I./libft/include
-CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) -g3
+CFLAGS			= -Wall -Wextra -Werror $(INCLUDES)
 NAME			= push_swap
 SOURCES_DIR		= ./src
 SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c algorithms.c\
@@ -36,6 +36,7 @@ $(NAME): $(OBJECTS)
 other_libs:
 	$(MAKE) -C $(FT_PRINTF_DIR)
 
+test: CFLAGS = -Wall -Wextra -Werror $(INCLUDES) -g3 -DTESTING=1
 test: testclean other_libs $(OBJECTS) $(TEST_OBJECTS)
 	cc $(CFLAGS) -o $(NAME) $(OBJECTS) $(TEST_OBJECTS) $(FT_PRINTF)
 

@@ -13,6 +13,15 @@
 #include "stdlib.h"
 #include <stddef.h>
 
+void	free_userinput(t_userinput **uinput)
+{
+	if (!uinput || !*uinput)
+		return ;
+	free((*uinput)->arr);
+	free(*uinput);
+	*uinput = 0;
+}
+
 int	handle_flag(char *arg, char **mode, int *bench)
 {
 	if (!ft_strcmp(arg, "--bench"))
@@ -80,6 +89,7 @@ int	parse_input(int argc, char **argv, t_userinput **user_input)
 	if (!*user_input)
 		return (0);
 	(*user_input)->mode = "adaptive";
+	(*user_input)->arr = 0;
 	(*user_input)->bench = 0;
 	i = 1;
 	while (i < argc && !ft_strncmp(argv[i], "--", 2))
@@ -91,9 +101,6 @@ int	parse_input(int argc, char **argv, t_userinput **user_input)
 	size = argc - i;
 	(*user_input)->arr_size = size;
 	if (!get_numbers_array(size, argv + i, &(*user_input)->arr))
-	{
-		free((*user_input)->arr);
 		return (0);
-	}
 	return (1);
 }
