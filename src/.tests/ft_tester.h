@@ -23,7 +23,6 @@
 	} while (0)
 #include "push_swap.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 t_intlist	*generate_random_stack(size_t size);
 int			test_stack_disorder(t_intlist *stack, int expected, const char *name);

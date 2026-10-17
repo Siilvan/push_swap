@@ -2,7 +2,6 @@
 #include "libft.h"
 #include "push_swap.h"
 #include <stddef.h>
-#include <stdio.h>
 
 void	print_stack(t_intlist *stack, const char *stack_name)
 {
@@ -53,11 +52,16 @@ int	test_user_input(char **av, int ac, t_userinput *expected, const char *name)
 {
 	t_userinput	*ui1;
 
-	if (!parse_input(ac, av, &ui1) && expected)
+	if (!parse_input(ac, av, &ui1))
 	{
-		PRINT_ERR(
-				ft_printf("Failed to parse user input."););
-		return (0);
+		if (expected)
+		{
+			PRINT_ERR(
+					ft_printf("Failed to parse user input."););
+			return (0);
+		}
+		PRINT_SUCCESS();
+		return (1);
 	}
 	if (userinput_cmp(ui1, expected))
 	{

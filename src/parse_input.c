@@ -70,10 +70,13 @@ int	get_numbers_array(size_t size, char **argv, int **arr)
 	return (1);
 }
 
+
 int	parse_input(int argc, char **argv, t_userinput **user_input)
 {
 	int	i;
 
+	if (argc < 2)
+		return (0);
 	*user_input = malloc(sizeof(t_userinput));
 	if (!*user_input)
 		return (0);
