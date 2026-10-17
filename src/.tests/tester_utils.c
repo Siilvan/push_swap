@@ -88,9 +88,9 @@ int	test_stack_order(t_intlist *stack, const char *name)
 			if (sk->content < stack->content)
 			{
 				PRINT_ERR(
-						ft_printf("Stack order is not right!");
+						ft_printf("Stack order is not right!\n");
+						print_stack(stack, "Stack");
 						);
-				print_stack(stack, "Stack");
 				return (0);
 			}
 			sk = sk->next;

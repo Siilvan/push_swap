@@ -1,9 +1,35 @@
 #include "ft_tester.h"
 #include "libft.h"
 #include "push_swap.h"
+#include <stdlib.h>
 #include <time.h>
 
-void	user_input()
+void	sorting__test()
+{
+	int	i;
+
+	TEST_HEADER("SORTING TESTS");
+
+	i = 0;
+	while (i < 10)
+	{
+		t_intlist *stack_a = generate_random_stack(rand() % 100);
+		t_intlist *stack_b = NULL;
+		algo_simple(&stack_a, &stack_b);
+		test_stack_order(stack_a, "Simple algorithm test");
+		i++;
+	}
+	// i = 0;
+	// while (i < 10)
+	// {
+	// 	t_intlist *stack_a = generate_random_stack(rand() % 100);
+	// 	t_intlist *stack_b = NULL;
+	// 	algo_medium(&stack_a, &stack_b);
+	// 	test_stack_order(stack_a, "Medium algorithm tests");
+	// }
+}
+
+void	user_input__test()
 {
 	TEST_HEADER("USER INPUT TESTS");
 	test_user_input(
@@ -95,17 +121,6 @@ void	user_input()
 int	main()
 {
 	srand(time(0));
-	t_intlist *stack_a = generate_random_stack(10);
-	t_intlist *stack_b = NULL;
-	user_input();
-	ft_printf("Before:\n");
-	print_stack(stack_a, "A");
-	print_stack(stack_b, "B");
-
-	// op_reverse_rotate(&stack_a, NULL);
-	algo_simple(&stack_a, &stack_b);
-
-	ft_printf("After:\n");
-	print_stack(stack_a, "A");
-	print_stack(stack_b, "B");
+	user_input__test();
+	sorting__test();
 }
