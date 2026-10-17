@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 18:27:31 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/17 14:37:54 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,38 @@ int	get_numbers_array(size_t size, char **argv, int **arr)
 	return (1);
 }
 
+char	**get_numbers(int *size, char **argv)
+{
+	char	**numbers;
+	int		i;
+
+	i = 0;
+	if (*size == 1)
+	{
+		numbers = ft_split(*argv, ' ');
+		if (!numbers)
+			return (0);
+		while (numbers[i])
+			i++;
+		size = &i;
+	}
+	else
+	{
+		numbers = malloc(sizeof(char *) * *size);
+		while (i < *size)
+		{
+			numbers[i] = argv[i];
+			i++;
+		}
+	}
+	return (numbers);
+}
+
 int	parse_input(int argc, char **argv, t_userinput **user_input)
 {
-	int	i;
+	int		i;
+	int		size;
+	char	**numbers;
 
 	*user_input = malloc(sizeof(t_userinput));
 	if (!*user_input)
@@ -85,8 +114,10 @@ int	parse_input(int argc, char **argv, t_userinput **user_input)
 			return (0);
 	if (i >= argc)
 		return (0);
-	(*user_input)->arr_size = argc - i;
-	if (!get_numbers_array(argc - i, &argv[i], &(*user_input)->arr))
+	size = argc - i;
+	numbers = get_numbers(&size, &argv[i]);
+	(*user_input)->arr_size = size;
+	if (!get_numbers_array(size, &argv[i], &(*user_input)->arr))
 	{
 		free((*user_input)->arr);
 		return (0);

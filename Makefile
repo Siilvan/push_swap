@@ -6,7 +6,7 @@
 #    By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/13 13:02:26 by sgroenve          #+#    #+#              #
-#    Updated: 2026/10/17 13:06:43 by sgroenve         ###   ########.fr        #
+#    Updated: 2026/10/17 14:01:01 by sgroenve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) -g3
 NAME			= push_swap
 SOURCES_DIR		= ./src
 SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c algorithms.c\
-med_algo.c final_result.c bench_result.c oparr_utils.c complex_algo.c digit_ranks.c 
+med_algo.c final_result.c bench_result.c oparr_utils.c complex_algo.c digit_ranks.c main.c
 SOURCES			:= $(addprefix ./src/, $(SOURCES))
 OBJECTS			= $(SOURCES:.c=.o)
 FT_PRINTF_DIR	= ./libft

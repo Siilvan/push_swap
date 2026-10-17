@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 16:06:18 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 17:37:57 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:55:07 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	print_result(t_oparr *oparr)
 	return (1);
 }
 
-void	manage_result(t_oparr *oparr)
+void	manage_result(t_oparr **oparr)
 {
-	if (oparr->n_op <= 50)
-		print_result(oparr);
+	if ((*oparr)->n_op <= 50)
+		print_result(*oparr);
 	else
 	{
-		ft_printf("%d\n", oparr->n_op - 1);
+		ft_printf("%d\n", (*oparr)->n_op - 1);
 	}
 }

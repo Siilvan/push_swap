@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 12:21:48 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 14:07:10 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,30 +83,30 @@ void		ft_intlstclear(t_intlist **lst);
 
 // Executes a swap op. (sa, sb, ss) depending on the specified params.
 // e.g. `op_swap(&stack_a, NULL)` will execute `sa`
-void		op_swap(t_intlist *stack_a, t_intlist *stack_b);
+void		op_swap(t_intlist *stack_a, t_intlist *stack_b, t_oparr **oparr);
 // Pushes the item at the top of stack b onto the top of stack a
-void		op_push_a(t_intlist **stack_a, t_intlist **stack_b);
+void		op_push_a(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
 // Pushes the item at the top of stack a onto the top of stack b
-void		op_push_b(t_intlist **stack_a, t_intlist **stack_b);
+void		op_push_b(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
 // Executes a rotation op. (ra, rb, rr)
-void		op_rotate(t_intlist **stack_a, t_intlist **stack_b);
+void		op_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
 // Executes a reverse rotation op. (rra, rrb, rrr)
-void		op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
+void		op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
 
 // Algorithms
 
 
 // Simple algorithm
-void		algo_simple(t_intlist **stack_a, t_intlist **stack_b);
+void		algo_simple(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
 // Medium algorithm
-void		algo_medium(t_intlist **a, t_intlist **b);
+void		algo_medium(t_intlist **a, t_intlist **b, t_oparr **oparr);
 // Complex algorithm
-void	algo_complex(t_intlist **a, t_intlist **b);
+void		algo_complex(t_intlist **a, t_intlist **b, t_oparr **oparr);
 
 
 // Computes the disorder of a stack
 double		compute_disorder(t_intlist *stack);
-int			error_exit(t_intlist *stack_a, t_intlist *stack_b, t_oparr *oparr);
+int			error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
 
 // Parsing
 
@@ -120,14 +120,14 @@ int			select_algo(t_userinput *user_input);
 // Operation array stuff
 t_oparr		*oparrnew(void);
 void		clear_oparr(t_oparr **start);
-int			ft_add_op(t_oparr *node, int op);
+int			ft_add_op(t_oparr **node, int op);
 char		*adaptive_choose(double disorder);
 
 
 // result
-void		manage_result(t_oparr *oparr);
+void		manage_result(t_oparr **oparr);
 // benchmark
-void		bench_result(t_oparr *oparr, char *mode, double disorder);
+void		bench_result(t_oparr **oparr, char *mode, double disorder);
 
 //helpers
 int		ft_sqrt(int nb);

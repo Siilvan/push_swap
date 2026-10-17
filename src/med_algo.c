@@ -6,13 +6,13 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 12:55:54 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 13:07:27 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:51:58 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	algo_medium_prt1(t_intlist **a, t_intlist **b)
+void	algo_medium_prt1(t_intlist **a, t_intlist **b, t_oparr **oparr)
 {
 	int	i;
 	int	chunk_size;
@@ -25,21 +25,21 @@ void	algo_medium_prt1(t_intlist **a, t_intlist **b)
 	{
 		if ((*a)->rank < current_chunk * chunk_size)
 		{
-			op_push_b(a, b);
+			op_push_b(a, b, oparr);
 			if ((*b)->rank < (current_chunk * chunk_size) - (chunk_size / 2))
-				op_rotate(NULL, b);
+				op_rotate(NULL, b, oparr);
 			i++;
 		}
 		else
 		{
 			if (i >= current_chunk * chunk_size)
 				current_chunk++;
-			op_rotate(a, NULL);
+			op_rotate(a, NULL, oparr);
 		}
 	}
 }
 
-void	algo_medium(t_intlist **a, t_intlist **b)
+void	algo_medium(t_intlist **a, t_intlist **b, t_oparr **oparr)
 {
 	int	nbr_amount;
 	int	top_rank;
@@ -49,16 +49,16 @@ void	algo_medium(t_intlist **a, t_intlist **b)
 	nbr_amount = ft_intlstsize(*a);
 	top_rank = nbr_amount - 1;
 	assign_rank(*a, nbr_amount);
-	algo_medium_prt1(a, b);
+	algo_medium_prt1(a, b, oparr);
 	while (*b)
 	{
 		if ((*b)->rank == top_rank)
 		{
-			op_push_a(a, b);
+			op_push_a(a, b, oparr);
 			top_rank--;
 		}
 		else
-			op_rotate(NULL, b);
+			op_rotate(NULL, b, oparr);
 		if (top_rank < 0)
 			break ;
 	}

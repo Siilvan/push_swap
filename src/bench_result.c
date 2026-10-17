@@ -6,21 +6,21 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 08:59:56 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 13:15:52 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:56:38 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bench_counter(t_oparr *oparr, int counter[11])
+void	bench_counter(t_oparr **oparr, int counter[11])
 {
 	int		i;
 	long	op_left;
 	t_oparr	*temp;
 
 	i = 0;
-	temp = oparr;
-	op_left = oparr->n_op;
+	temp = *oparr;
+	op_left = (*oparr)->n_op;
 	while (i < op_left)
 	{
 		if (i == 2000)
@@ -34,7 +34,7 @@ void	bench_counter(t_oparr *oparr, int counter[11])
 	}
 }
 
-void	bench_result(t_oparr *oparr, char *mode, double disorder)
+void	bench_result(t_oparr **oparr, char *mode, double disorder)
 {
 	char	*pre;
 	char	*adaptive;
@@ -48,7 +48,7 @@ void	bench_result(t_oparr *oparr, char *mode, double disorder)
 		ft_fdprintf(2, "%sstrategy:   %s / %s\n", pre, mode, adaptive);
 	else
 		ft_fdprintf(2, "%sstrategy:   %s\n", pre, mode);
-	ft_fdprintf(2, "%stotal_ops: %d\n", pre, oparr->n_op - 1);
+	ft_fdprintf(2, "%stotal_ops: %d\n", pre, (*oparr)->n_op - 1);
 	ft_fdprintf(2, "%ssa:%5d  sb:%5d  ss:%5d\n", cnt[SA], cnt[SB], cnt[SS]);
 	ft_fdprintf(2, "%spa:%5d  pn:%5d\n", cnt[PA], cnt[PB]);
 	ft_fdprintf(2, "%sra:%5d  rb:%5d  rr:%5d\n", cnt[RA], cnt[RB], cnt[RR]);

@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 16:09:23 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 14:44:15 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 14:14:02 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,21 @@ void	clear_oparr(t_oparr **start)
 	*start = NULL;
 }
 
-int	ft_add_op(t_oparr *node, int op)
+int	ft_add_op(t_oparr **node, int op)
 {
 	t_oparr	*new;
 
 	new = NULL;
-	if ((node->n_op % 2000) == 0 && node->n_op != 0)
+	if (((*node)->n_op % 2000) == 0 && (*node)->n_op != 0)
 	{
 		new = oparrnew();
 		if (!new)
 			return (-1);
-		new->n_op = node->n_op;
-		ft_oparr_back(&node, new);
+		new->n_op = (*node)->n_op;
+		ft_oparr_back(node, new);
 	}
-	if ((node->n_op / 2000) > 0)
-		new = ft_oparrlast(node);
-	new->arr[(node->n_op % 100)] = op;
+	new = ft_oparrlast(*node);
+	new->arr[((*node)->n_op % 100)] = op;
 	new->n_op += 1;
 	return (0);
 }

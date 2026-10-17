@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 22:41:10 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/16 15:27:28 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:45:26 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	op_rotate_helper(t_intlist **stack)
 	*stack = tmp;
 }
 
-void	op_rotate(t_intlist **stack_a, t_intlist **stack_b)
+void	op_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
 	// if (stack_a && !stack_b)
 	// 	ft_printf("ra");
@@ -49,12 +49,18 @@ void	op_rotate(t_intlist **stack_a, t_intlist **stack_b)
 	// else if (stack_a && stack_b)
 	// 	ft_printf("rr");
 	if (stack_a)
+	{
 		op_rotate_helper(stack_a);
+		ft_add_op(oparr, RA);
+	}
 	if (stack_b)
+	{
 		op_rotate_helper(stack_b);
+		ft_add_op(oparr, RB);
+	}
 }
 
-void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b)
+void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
 	// if (stack_a && !stack_b)
 	// 	ft_printf("rra");
@@ -63,7 +69,13 @@ void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b)
 	// else if (stack_a && stack_b)
 	// 	ft_printf("rrr");
 	if (stack_a)
+	{
 		op_rrotate_helper(stack_a);
+		ft_add_op(oparr, RRA);
+	}
 	if (stack_b)
+	{
 		op_rrotate_helper(stack_b);
+		ft_add_op(oparr, RRB);
+	}
 }
