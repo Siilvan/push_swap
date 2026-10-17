@@ -9,14 +9,13 @@
 /*   Updated: 2026/10/16 18:47:30 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 #include "stdlib.h"
 #include <stddef.h>
 
 int	handle_flag(char *arg, char **mode, int *bench)
 {
-	if(!ft_strcmp(arg, "--bench"))
+	if (!ft_strcmp(arg, "--bench"))
 		*bench = 1;
 	else if (!ft_strcmp(arg, "--simple") || !ft_strcmp(arg, "--medium"))
 		*mode = arg + 2;
@@ -84,7 +83,8 @@ int	parse_input(int argc, char **argv, t_userinput **user_input)
 	(*user_input)->bench = 0;
 	i = 1;
 	while (i < argc && !ft_strncmp(argv[i], "--", 2))
-		if (!handle_flag(argv[i++], &(*user_input)->mode, &(*user_input)->bench))
+		if (!handle_flag(argv[i++], &(*user_input)->mode,
+				&(*user_input)->bench))
 			return (0);
 	if (i >= argc)
 		return (0);

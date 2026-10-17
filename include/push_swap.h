@@ -25,32 +25,30 @@
 # define RRR 10
 
 # include "libft.h"
-#include <stddef.h>
-#include <stdlib.h>
+# include <stddef.h>
+# include <stdlib.h>
 
-typedef struct s_intlist {
+typedef struct s_intlist
+{
 	struct s_intlist	*next;
 	int					content;
 	int					rank;
 }	t_intlist;
 
-typedef struct operationarray_s {
-	int arr[2000];
-	int n_op;
-	struct operationarray_s *next;
-} t_oparr;
+typedef struct operationarray_s
+{
+	int						arr[2000];
+	int						n_op;
+	struct operationarray_s	*next;
+}	t_oparr;
 
-typedef struct s_userinput {
+typedef struct s_userinput
+{
 	int		bench;
 	char	*mode;
 	int		*arr;
 	size_t	arr_size;
-} t_userinput;
-
-// On the subject of operation counting:
-// We essentially have at worst 10 operations, so we could just have a int op_counter[10], and each
-// index represents the count of a specific op. E.g. sa, sa, sb -> op_counter[0] += 2; op_counter[1] += 1;
-// 0 being the index for `sa` and 1 of `sb`.
+}	t_userinput;
 
 // Helpers
 
@@ -58,7 +56,6 @@ typedef struct s_userinput {
 t_intlist	*get_stack_from_arr(int *arr, size_t size);
 // strcmp
 int			ft_strcmp(char *s1, char *s2);
-
 
 // Linked list utils
 
@@ -83,33 +80,41 @@ void		ft_intlstclear(t_intlist **lst);
 
 // Executes a swap op. (sa, sb, ss) depending on the specified params.
 // e.g. `op_swap(&stack_a, NULL)` will execute `sa`
-void		op_swap(t_intlist *stack_a, t_intlist *stack_b, t_oparr **oparr);
+void		op_swap(t_intlist *stack_a, t_intlist *stack_b,
+				t_oparr **oparr);
 // Pushes the item at the top of stack b onto the top of stack a
-void		op_push_a(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
+void		op_push_a(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr);
 // Pushes the item at the top of stack a onto the top of stack b
-void		op_push_b(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
+void		op_push_b(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr);
 // Executes a rotation op. (ra, rb, rr)
-void		op_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
+void		op_rotate(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr);
 // Executes a reverse rotation op. (rra, rrb, rrr)
-void		op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
+void		op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr);
 
 // Algorithms
 
-
 // Simple algorithm
-void		algo_simple(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
+void		algo_simple(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr);
 // Medium algorithm
-void		algo_medium(t_intlist **a, t_intlist **b, t_oparr **oparr);
+void		algo_medium(t_intlist **a, t_intlist **b,
+				t_oparr **oparr);
 // Complex algorithm
-void		algo_complex(t_intlist **a, t_intlist **b, t_oparr **oparr);
+void		algo_complex(t_intlist **a, t_intlist **b,
+				t_oparr **oparr);
 // Adaptive algorithm
 char		*adaptive_choose(double disorder);
-void		algo_adaptive(t_intlist **a, t_intlist **b, t_oparr **ops, int disorder);
-
+void		algo_adaptive(t_intlist **a, t_intlist **b,
+				t_oparr **ops, int disorder);
 
 // Computes the disorder of a stack
 double		compute_disorder(t_intlist *stack);
-int			error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
+int			error_exit(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr);
 
 // Parsing
 
@@ -132,9 +137,9 @@ void		manage_result(t_oparr **oparr);
 void		bench_result(t_oparr **oparr, char *mode, double disorder);
 
 //helpers
-int		ft_sqrt(int nb);
-void	ft_printstack(t_intlist *stack);
-void	assign_rank(t_intlist *stack_a, int n);
-void	ft_printstack(t_intlist *stack);
+int			ft_sqrt(int nb);
+void		ft_printstack(t_intlist *stack);
+void		assign_rank(t_intlist *stack_a, int n);
+void		ft_printstack(t_intlist *stack);
 
 #endif

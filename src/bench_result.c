@@ -30,7 +30,7 @@ void	bench_counter(t_oparr **oparr, int counter[11])
 			i++;
 		}
 		temp = temp->next;
-	}	
+	}
 }
 
 int	ops_count(t_oparr **oparr)
@@ -47,6 +47,7 @@ int	ops_count(t_oparr **oparr)
 	}
 	return (total);
 }
+
 void	bench_result(t_oparr **oparr, char *mode, double disorder)
 {
 	char	*pre;
@@ -65,8 +66,11 @@ void	bench_result(t_oparr **oparr, char *mode, double disorder)
 	else
 		ft_fdprintf(2, "%sstrategy:   %s\n", pre, mode);
 	ft_fdprintf(2, "%stotal_ops:  %d\n", pre, total_ops);
-	ft_fdprintf(2, "%ssa:%5d  sb:%5d  ss:%5d\n", pre, cnt[SA], cnt[SB], cnt[SS]);
+	ft_fdprintf(2, "%ssa:%5d  sb:%5d  ss:%5d\n",
+		pre, cnt[SA], cnt[SB], cnt[SS]);
 	ft_fdprintf(2, "%spa:%5d  pb:%5d\n", pre, cnt[PA], cnt[PB]);
-	ft_fdprintf(2, "%sra:%5d  rb:%5d  rr:%5d\n", pre, cnt[RA], cnt[RB], cnt[RR]);
-	ft_fdprintf(2, "%srra:%4d  rrb:%4d  rrr:%4d\n", pre, cnt[RRA], cnt[RRB], cnt[RRR]);
+	ft_fdprintf(2, "%sra:%5d  rb:%5d  rr:%5d\n",
+		pre, cnt[RA], cnt[RB], cnt[RR]);
+	ft_fdprintf(2, "%srra:%4d  rrb:%4d  rrr:%4d\n",
+		pre, cnt[RRA], cnt[RRB], cnt[RRR]);
 }

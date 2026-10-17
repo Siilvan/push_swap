@@ -12,20 +12,20 @@
 
 #include "push_swap.h"
 
-// int main(int argc, char *argv[])
-// {
-// 	t_userinput	*user_input;
-//
-// 	if (!parse_input(argc, argv, &user_input)
-// 		|| !select_algo(user_input))
-// 	{
-// 		free(user_input);
-// 		error_exit(NULL, NULL, NULL);
-// 		return (1);
-// 	}
-// 	free(user_input);
-// 	return (0);
-// }
+int	main(int argc, char *argv[])
+{
+	t_userinput	*user_input;
+
+	if (!parse_input(argc, argv, &user_input)
+		|| !select_algo(user_input))
+	{
+		free(user_input);
+		error_exit(NULL, NULL, NULL);
+		return (1);
+	}
+	free(user_input);
+	return (0);
+}
 
 int	select_algo(t_userinput *user_input)
 {
@@ -50,7 +50,6 @@ int	select_algo(t_userinput *user_input)
 		algo_adaptive(&stack_a, &stack_b, &oparr, disorder);
 	if (user_input->bench == 1)
 		bench_result(&oparr, user_input->mode, disorder);
-
 	manage_result(&oparr);
 	return (1);
 }

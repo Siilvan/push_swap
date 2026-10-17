@@ -50,11 +50,11 @@ t_oparr	*oparrnew(void)
 	if (!new)
 		return (NULL);
 	i = 0;
-    while (i < 2000)
-    {
-        new->arr[i] = -1;
-        i++;
-    }
+	while (i < 2000)
+	{
+		new->arr[i] = -1;
+		i++;
+	}
 	new->n_op = 0;
 	new->next = NULL;
 	return (new);
@@ -62,7 +62,7 @@ t_oparr	*oparrnew(void)
 
 void	clear_oparr(t_oparr **start)
 {
-	t_oparr *tmp;
+	t_oparr	*tmp;
 
 	while (*start != NULL)
 	{

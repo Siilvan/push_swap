@@ -42,40 +42,29 @@ static void	op_rotate_helper(t_intlist **stack)
 
 void	op_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
-	// if (stack_a && !stack_b)
-	// 	ft_printf("ra");
-	// else if (!stack_a && stack_b)
-	// 	ft_printf("rb");
-	// else if (stack_a && stack_b)
-	// 	ft_printf("rr");
-	if (stack_a)
-	{
-		op_rotate_helper(stack_a);
+	if (stack_a && !stack_b)
 		ft_add_op(oparr, RA);
-	}
-	if (stack_b)
-	{
-		op_rotate_helper(stack_b);
+	else if (!stack_a && stack_b)
 		ft_add_op(oparr, RB);
-	}
+	else if (stack_a && stack_b)
+		ft_add_op(oparr, RR);
+	if (stack_a)
+		op_rotate_helper(stack_a);
+	if (stack_b)
+		op_rotate_helper(stack_b);
 }
 
-void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
+void	op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b,
+				t_oparr **oparr)
 {
-	// if (stack_a && !stack_b)
-	// 	ft_printf("rra");
-	// else if (!stack_a && stack_b)
-	// 	ft_printf("rrb");
-	// else if (stack_a && stack_b)
-	// 	ft_printf("rrr");
-	if (stack_a)
-	{
-		op_rrotate_helper(stack_a);
+	if (stack_a && !stack_b)
 		ft_add_op(oparr, RRA);
-	}
-	if (stack_b)
-	{
-		op_rrotate_helper(stack_b);
+	else if (!stack_a && stack_b)
 		ft_add_op(oparr, RRB);
-	}
+	else if (stack_a && stack_b)
+		ft_add_op(oparr, RRR);
+	if (stack_a)
+		op_rrotate_helper(stack_a);
+	if (stack_b)
+		op_rrotate_helper(stack_b);
 }

@@ -37,34 +37,26 @@ static void	op_push_helper(t_intlist **stack_a, t_intlist **stack_b)
 
 void	op_swap(t_intlist *stack_a, t_intlist *stack_b, t_oparr **oparr)
 {
-	// if (stack_a && !stack_b)
-	// 	ft_printf("sa");
-	// else if (!stack_a && stack_b)
-	// 	ft_printf("sb");
-	// else if (stack_a && stack_b)
-	// 	ft_printf("ss");
-	if (stack_a)
-	{
-		op_swap_helper(stack_a);
+	if (stack_a && !stack_b)
 		ft_add_op(oparr, SA);
-	}
-	if (stack_b)
-	{
-		op_swap_helper(stack_b);
+	else if (!stack_a && stack_b)
 		ft_add_op(oparr, SB);
-	}
+	else if (stack_a && stack_b)
+		ft_add_op(oparr, SS);
+	if (stack_a)
+		op_swap_helper(stack_a);
+	if (stack_b)
+		op_swap_helper(stack_b);
 }
 
 void	op_push_a(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
-	// ft_printf("pa");
-	op_push_helper(stack_b, stack_a);
 	ft_add_op(oparr, PA);
+	op_push_helper(stack_b, stack_a);
 }
 
 void	op_push_b(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
-	// ft_printf("pb");
-	op_push_helper(stack_a, stack_b);
 	ft_add_op(oparr, PB);
+	op_push_helper(stack_a, stack_b);
 }
