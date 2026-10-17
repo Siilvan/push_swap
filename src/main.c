@@ -12,21 +12,21 @@
 
 #include "push_swap.h"
 
-int main(int argc, char *argv[])
-{
-	t_userinput	*user_input;
-
-	if (!parse_input(argc, argv, &user_input)
-		|| !select_algo(user_input))
-	{
-		free(user_input);
-		error_exit(NULL, NULL, NULL);
-		return (1);
-	}
-	ft_printf("%d\n", user_input->bench);
-	ft_printf("%s\n", user_input->mode);
-	return (0);
-}
+// int main(int argc, char *argv[])
+// {
+// 	t_userinput	*user_input;
+//
+// 	if (!parse_input(argc, argv, &user_input)
+// 		|| !select_algo(user_input))
+// 	{
+// 		free(user_input);
+// 		error_exit(NULL, NULL, NULL);
+// 		return (1);
+// 	}
+// 	ft_printf("%d\n", user_input->bench);
+// 	ft_printf("%s\n", user_input->mode);
+// 	return (0);
+// }
 
 int	select_algo(t_userinput *user_input)
 {

@@ -121,7 +121,6 @@ void		clear_oparr(t_oparr **start);
 int			ft_add_op(t_oparr *node, int op);
 char		*adaptive_choose(double disorder);
 
-
 // result
 void		manage_result(t_oparr *oparr);
 // benchmark

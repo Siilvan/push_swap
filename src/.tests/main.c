@@ -3,11 +3,101 @@
 #include "push_swap.h"
 #include <time.h>
 
+void	user_input()
+{
+	TEST_HEADER("USER INPUT TESTS");
+	test_user_input(
+			(char*[]){"file", "--simple", "3", "6", "2", "-109"},
+			6,
+			&(t_userinput){0, "simple", (int[]){3, 6, 2, -109}, 4},
+			"no bench, simple and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "--medium", "3", "6", "2", "-109"},
+			6,
+			&(t_userinput){0, "medium", (int[]){3, 6, 2, -109}, 4},
+			"no bench, medium and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "--complex", "3", "6", "2", "-109"},
+			6,
+			&(t_userinput){0, "complex", (int[]){3, 6, 2, -109}, 4},
+			"no bench, complex and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "--adaptive", "3", "6", "2", "-109"},
+			6,
+			&(t_userinput){0, "adaptive", (int[]){3, 6, 2, -109}, 4},
+			"no bench adaptive and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "--bench", "--simple", "3", "6", "2", "1"},
+			7,
+			&(t_userinput){1, "simple", (int[]){3, 6, 2, 1}, 4},
+			"bench, simple and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "--bench", "--medium", "3", "6", "2", "1"},
+			7,
+			&(t_userinput){1, "medium", (int[]){3, 6, 2, 1}, 4},
+			"bench, medium and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "--bench", "--adaptive", "3", "6", "2", "1"},
+			7,
+			&(t_userinput){1, "adaptive", (int[]){3, 6, 2, 1}, 4},
+			"bench, adaptive and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "--bench", "--complex", "3", "6", "2", "1"},
+			7,
+			&(t_userinput){1, "complex", (int[]){3, 6, 2, 1}, 4},
+			"bench, complex and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "3", "6", "2", "-109"},
+			5,
+			&(t_userinput){0, "adaptive", (int[]){3, 6, 2, -109}, 4},
+			"no bench, no algo spec and valid array"
+			);
+	test_user_input(
+			(char*[]){"file", "3", "6", "2", "-109"},
+			5,
+			&(t_userinput){0, "adaptive", (int[]){3, 6, 2, -109}, 4},
+			"bench, no algo spec and valid array"
+			);
+	test_user_input(
+			(char*[]){"file"},
+			1,
+			NULL,
+			"Invalid input: not enough args"
+			);
+	test_user_input(
+			(char*[]){"file", "Eat shit."},
+			2,
+			NULL,
+			"Invalid input: stupid args"
+			);
+	test_user_input(
+			(char*[]){"file", "10", "3a", "b2", "WW", "\t"},
+			6,
+			NULL,
+			"Invalid input: letters in array"
+			);
+	test_user_input(
+			(char*[]){"file", "--+10", "+++   20"},
+			3,
+			NULL,
+			"Invalid input: invalid atoi call"
+			);
+}
+
 int	main()
 {
 	srand(time(0));
 	t_intlist *stack_a = generate_random_stack(10);
 	t_intlist *stack_b = NULL;
+	user_input();
 	ft_printf("Before:\n");
 	print_stack(stack_a, "A");
 	print_stack(stack_b, "B");
