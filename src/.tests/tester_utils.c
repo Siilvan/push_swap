@@ -22,6 +22,23 @@ void	print_stack(t_intlist *stack, const char *stack_name)
 	ft_printf("} | disorder: %f\n", disorder);
 }
 
+void	ft_print_buffer(char *name, char border, int length)
+{
+	int	b_len;
+	int	tot_len;
+
+	if (!border)
+		b_len = 0;
+	else
+		b_len = ft_strlen(name);
+	tot_len = length - b_len;
+	ft_putchar_n(1, border, tot_len / 2);
+	ft_putstr_fd(name, 1);
+	ft_putchar_n(1, border, tot_len / 2);
+	ft_putchar_fd('\n', 1);
+	ft_putchar_fd('\n', 1);
+}
+
 void	print_arr(void	*arr, size_t size)
 {
 	size_t	i;
