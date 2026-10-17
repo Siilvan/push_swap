@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 14:07:10 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 16:40:23 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,9 @@ void		algo_simple(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr);
 void		algo_medium(t_intlist **a, t_intlist **b, t_oparr **oparr);
 // Complex algorithm
 void		algo_complex(t_intlist **a, t_intlist **b, t_oparr **oparr);
+// Adaptive algorithm
+char		*adaptive_choose(double disorder);
+void		algo_adaptive(t_intlist **a, t_intlist **b, t_oparr **ops, int disorder);
 
 
 // Computes the disorder of a stack

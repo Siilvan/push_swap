@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 16:06:18 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 13:55:07 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 18:02:23 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,31 @@ int	print_result(t_oparr *oparr)
 {
 	char	**op_names;
 	int		i;
+	int		val;
 	t_oparr	*temp;
 
 	i = 0;
-	temp = oparr;
 	op_names = ft_split("sa sb ss pa pb ra rb rr rra rrb rrr", ' ');
 	if (op_names == NULL)
 		return (-1);
-	while (i < oparr->n_op)
+	temp = oparr;
+	while (temp)
 	{
-		if (i == 2000)
+		i = 0;
+		while (i < temp->n_op)
 		{
-			temp = temp->next;
-			i -= 2000;
-			oparr->n_op -= 2000;
+			val = temp->arr[i];
+			if (val >= 0 && val <= 10)
+				ft_printf("%s\n", op_names[val]);
+			i++;
 		}
-		ft_printf("%s\n", op_names[temp->arr[i]]);
-		i++;
+		temp = temp->next;
 	}
 	return (1);
 }
 
 void	manage_result(t_oparr **oparr)
 {
-	if ((*oparr)->n_op <= 50)
+	if ((*oparr)->n_op > 0)
 		print_result(*oparr);
-	else
-	{
-		ft_printf("%d\n", (*oparr)->n_op - 1);
-	}
 }

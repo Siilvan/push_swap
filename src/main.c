@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:52 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 14:00:44 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 17:11:27 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int main(int argc, char *argv[])
 		error_exit(NULL, NULL, NULL);
 		return (1);
 	}
-	// ft_printf("%d\n", user_input->bench);
-	// ft_printf("%s\n", user_input->mode);
-	select_algo(user_input);
+	free(user_input);
 	return (0);
 }
 
@@ -43,16 +41,16 @@ int	select_algo(t_userinput *user_input)
 		error_exit(&stack_a, &stack_b, &oparr);
 	disorder = compute_disorder(stack_a);
 	if (!ft_strcmp(user_input->mode, "simple"))
-		algo_simple(&stack_a, &stack_b);
+		algo_simple(&stack_a, &stack_b, &oparr);
 	else if (!ft_strcmp(user_input->mode, "medium"))
 		algo_medium(&stack_a, &stack_b, &oparr);
 	else if (!ft_strcmp(user_input->mode, "complex"))
-		algo_complex(&stack_a, &stack_b);
-	// else if (!ft_strcmp(mode, "adaptive"))
-	// 	algo_adaptive(stack_a, stack_b, oparr, disorder);
+		algo_complex(&stack_a, &stack_b, &oparr);
+	else if (!ft_strcmp(user_input->mode, "adaptive"))
+		algo_adaptive(&stack_a, &stack_b, &oparr, disorder);
 	if (user_input->bench == 1)
 		bench_result(&oparr, user_input->mode, disorder);
-	else
-		manage_result(&oparr);
+
+	manage_result(&oparr);
 	return (1);
 }

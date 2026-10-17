@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 14:37:54 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 15:12:46 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,16 @@ char	**get_numbers(int *size, char **argv)
 	{
 		numbers = ft_split(*argv, ' ');
 		if (!numbers)
+		{
 			return (0);
+		}
 		while (numbers[i])
 			i++;
-		size = &i;
+		*size = i;
 	}
 	else
 	{
-		numbers = malloc(sizeof(char *) * *size);
+		numbers = malloc(sizeof(char *) * *size + 1);
 		while (i < *size)
 		{
 			numbers[i] = argv[i];
@@ -117,7 +119,7 @@ int	parse_input(int argc, char **argv, t_userinput **user_input)
 	size = argc - i;
 	numbers = get_numbers(&size, &argv[i]);
 	(*user_input)->arr_size = size;
-	if (!get_numbers_array(size, &argv[i], &(*user_input)->arr))
+	if (!get_numbers_array(size, numbers, &(*user_input)->arr))
 	{
 		free((*user_input)->arr);
 		return (0);
