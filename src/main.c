@@ -39,7 +39,7 @@ int	select_algo(t_userinput *user_input)
 	double		disorder;
 	t_oparr		*oparr;
 
-	stack_a = get_stack_from_arr(nbrs, 5);
+	stack_a = get_stack_from_arr(user_input->arr, user_input->arr_size);
 	stack_b = NULL;
 	oparr = oparrnew();
 	if (stack_a == NULL || oparr == NULL)
