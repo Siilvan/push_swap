@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/16 18:06:14 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 10:18:24 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,9 @@ void		manage_result(t_oparr *oparr);
 void		bench_result(t_oparr *oparr, char *mode, double disorder);
 
 //helpers
-int	ft_sqrt(int nb);
+int		ft_sqrt(int nb);
 void	ft_printstack(t_intlist *stack);
-t_intlist	*get_empty_stack(size_t size);
-t_intlist	*ft_intlstnew2(void);
+void	assign_rank(t_intlist *stack_a, int n);
 
 
 #endif
