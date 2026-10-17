@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 23:55:57 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/15 13:52:18 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:16:17 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_intlstsize(t_intlist *lst)
 	i = 0;
 	while (lst)
 	{
-		lst = lst->next; 
+		lst = lst->next;
 		i++;
 	}
 	return (i);

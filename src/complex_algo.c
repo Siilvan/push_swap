@@ -6,11 +6,28 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 10:46:12 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 11:47:29 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:09:20 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	complex_inner_loop(t_intlist **a, t_intlist **b, int nbr_count, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < nbr_count)
+	{
+		if ((((*a)->rank >> i) & 1) == 0)
+			op_push_b(a, b);
+		else
+			op_rotate(a, NULL);
+		j++;
+	}
+	while (ft_intlstsize(*b) > 0)
+		op_push_a(a, b);
+}
 
 void	algo_complex(t_intlist **a, t_intlist **b)
 {
@@ -18,7 +35,6 @@ void	algo_complex(t_intlist **a, t_intlist **b)
 	int	max_bits;
 	int	max_rank;
 	int	i;
-	int	j;
 
 	if (!a || !b || !*a || *b)
 		return ;
@@ -31,17 +47,7 @@ void	algo_complex(t_intlist **a, t_intlist **b)
 		max_bits++;
 	while (i < max_bits)
 	{
-		j = 0;
-		while (j < nbr_amount)
-		{
-			if ((((*a)->rank >> i) & 1) == 0)
-				op_push_b(a, b);
-			else
-				op_rotate(a, NULL);
-			j++;
-		}
-		while (ft_intlstsize(*b) > 0)
-			op_push_a(a, b);
+		complex_inner_loop(a, b, nbr_amount, i);
 		i++;
 	}
 }

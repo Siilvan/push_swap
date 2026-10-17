@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 12:55:54 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 11:48:12 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:07:27 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	algo_medium(t_intlist **a, t_intlist **b)
 		else
 			op_rotate(NULL, b);
 		if (top_rank < 0)
-			break;
+			break ;
 	}
 }

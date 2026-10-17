@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 10:17:57 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 10:17:58 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 13:11:09 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	sort_cpyarr(int *cpy, int n)
 		i++;
 	}
 }
+
 int	*create_cpyarr(t_intlist *stack_a, int n)
 {
 	int			i;
@@ -52,8 +53,9 @@ int	*create_cpyarr(t_intlist *stack_a, int n)
 		temp = temp->next;
 		i++;
 	}
-	return(cpy);
+	return (cpy);
 }
+
 void	assign_rank(t_intlist *stack_a, int n)
 {
 	int			i;
@@ -62,10 +64,10 @@ void	assign_rank(t_intlist *stack_a, int n)
 
 	cpy = create_cpyarr(stack_a, n);
 	if (!cpy)
-		return;
+		return ;
 	sort_cpyarr(cpy, n);
 	temp = stack_a;
-	while(temp)
+	while (temp)
 	{
 		i = 0;
 		while (i < n)
@@ -73,7 +75,7 @@ void	assign_rank(t_intlist *stack_a, int n)
 			if (cpy[i] == temp->content)
 			{
 				temp->rank = i;
-				break;
+				break ;
 			}
 			i++;
 		}
