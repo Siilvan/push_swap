@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:52 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 10:32:13 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 12:22:37 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	select_algo(t_userinput *user_input)
 	if (!ft_strcmp(user_input->mode, "simple"))
 		algo_simple(&stack_a, &stack_b);
 	else if (!ft_strcmp(user_input->mode, "medium"))
-		algo_medium(&stack_a, &stack_b, oparr);
-	// else if (!ft_strcmp(mode, "complex"))
-	// 	algo_complex(stack_a, stack_b, oparr);
+		algo_medium(&stack_a, &stack_b);
+	else if (!ft_strcmp(user_input->mode, "complex"))
+		algo_complex(&stack_a, &stack_b);
 	// else if (!ft_strcmp(mode, "adaptive"))
 	// 	algo_adaptive(stack_a, stack_b, oparr, disorder);
 	if (user_input->bench == 1)
@@ -54,23 +54,4 @@ int	select_algo(t_userinput *user_input)
 	else
 		manage_result(oparr);
 	return (1);
-}
-
-char	*adaptive_choose(double disorder)
-{
-	if (disorder < 0.2)
-		return ("simple");
-	else if (0.2 <= disorder && disorder < 0.5)
-		return ("medium");
-	else
-		return ("complex");
-}
-
-void	ft_printstack(t_intlist *stack)
-{
-	while (stack)
-    {
-        ft_printf("%d (rank %d)\n", stack->content, stack->rank);
-        stack = stack->next;
-    }
 }

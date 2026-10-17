@@ -6,11 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/10/17 10:18:24 by sgroenve         ###   ########.fr       */
-=======
-/*   Updated: 2026/10/16 18:23:55 by ngero            ###   ########.fr       */
->>>>>>> 31fa211fd07e53b02b2cfc9c35812742ab9cc06b
+/*   Updated: 2026/10/17 12:21:48 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +99,9 @@ void		op_reverse_rotate(t_intlist **stack_a, t_intlist **stack_b);
 // Simple algorithm
 void		algo_simple(t_intlist **stack_a, t_intlist **stack_b);
 // Medium algorithm
-void		algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr);
+void		algo_medium(t_intlist **a, t_intlist **b);
+// Complex algorithm
+void	algo_complex(t_intlist **a, t_intlist **b);
 
 
 // Computes the disorder of a stack
@@ -135,6 +133,6 @@ void		bench_result(t_oparr *oparr, char *mode, double disorder);
 int		ft_sqrt(int nb);
 void	ft_printstack(t_intlist *stack);
 void	assign_rank(t_intlist *stack_a, int n);
-
+void	ft_printstack(t_intlist *stack);
 
 #endif

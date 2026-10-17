@@ -6,13 +6,13 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 12:55:54 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 10:18:07 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/17 11:48:12 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	algo_medium_prt1(t_intlist **a, t_intlist **b, t_oparr *oparr)
+void	algo_medium_prt1(t_intlist **a, t_intlist **b)
 {
 	int	i;
 	int	chunk_size;
@@ -20,7 +20,6 @@ void	algo_medium_prt1(t_intlist **a, t_intlist **b, t_oparr *oparr)
 
 	i = 0;
 	current_chunk = 1;
-	oparr->n_op = 1;
 	chunk_size = ft_sqrt(ft_intlstsize(*a));
 	while (*a)
 	{
@@ -40,7 +39,7 @@ void	algo_medium_prt1(t_intlist **a, t_intlist **b, t_oparr *oparr)
 	}
 }
 
-void	algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr)
+void	algo_medium(t_intlist **a, t_intlist **b)
 {
 	int	nbr_amount;
 	int	top_rank;
@@ -50,7 +49,7 @@ void	algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr)
 	nbr_amount = ft_intlstsize(*a);
 	top_rank = nbr_amount - 1;
 	assign_rank(*a, nbr_amount);
-	algo_medium_prt1(a, b, oparr);
+	algo_medium_prt1(a, b);
 	while (*b)
 	{
 		if ((*b)->rank == top_rank)
@@ -63,5 +62,4 @@ void	algo_medium(t_intlist **a, t_intlist **b, t_oparr *oparr)
 		if (top_rank < 0)
 			break;
 	}
-	ft_printstack(*a);
 }
