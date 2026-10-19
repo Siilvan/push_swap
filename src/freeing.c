@@ -6,7 +6,7 @@
 /*   By: ngero <ngero@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 17:30:59 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/19 17:50:03 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/19 19:01:25 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr,
 	ft_putendl_fd("Error", 2);
 	return (0);
 }
-    
 
 void	ft_freesplit(char **split)
 {

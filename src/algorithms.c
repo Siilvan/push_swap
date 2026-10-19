@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 13:13:38 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/19 18:52:53 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/19 19:01:06 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	algo_simple(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 		op_push_a(stack_a, stack_b, oparr);
 }
 
-
-void	algo_adaptive(t_intlist **a, t_intlist **b, t_oparr **ops, double disorder)
+void	algo_adaptive(t_intlist **a, t_intlist **b, t_oparr **ops,
+			double disorder)
 {
 	if (disorder < 0.2)
 		algo_simple(a, b, ops);
