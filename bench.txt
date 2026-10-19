@@ -1,7 +1,0 @@
-[bench] disorder:   0.484705%
-[bench] strategy:   complex
-[bench] total_ops:  6784
-[bench] sa:    0  sb:    0  ss:    0
-[bench] pa: 2284  pb: 2284
-[bench] ra: 2216  rb:    0  rr:    0
-[bench] rra:   0  rrb:   0  rrr:   0

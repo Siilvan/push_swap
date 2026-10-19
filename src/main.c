@@ -6,18 +6,18 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:52 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 17:11:27 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 10:49:54 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int	main(int argc, char *argv[])
-// {
-// 	if (!sort_stack(argc, argv))
-// 		return (1);
-// 	return (0);
-// }
+int	main(int argc, char *argv[])
+{
+	if (!sort_stack(argc, argv))
+		return (1);
+	return (0);
+}
 
 int	sort_stack(int argc, char *argv[])
 {
