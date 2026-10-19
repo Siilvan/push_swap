@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/17 10:46:12 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 17:35:37 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 10:57:23 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	complex_inner_loop(t_intlist **a, t_intlist **b, t_oparr **ops, int bit)
 				op_rotate(a, NULL, ops);
 			j++;
 		}
-		while (ft_intlstsize(*b) > 0)
+		while (*b)
 			op_push_a(a, b, ops);
 		i++;
 	}
