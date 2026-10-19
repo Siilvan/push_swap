@@ -22,7 +22,6 @@
 		ft_printf("%s%s%s : OK%s\n", COLBLUE, name, COLGREEN, COLCLEAR); \
 	} while (0)
 #include "push_swap.h"
-#include <stdlib.h>
 
 t_intlist	*generate_random_stack(size_t size);
 int			test_stack_disorder(t_intlist *stack, int expected, const char *name);

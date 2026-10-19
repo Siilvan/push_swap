@@ -1,6 +1,5 @@
 #include "ft_tester.h"
 #include "push_swap.h"
-#include <stdlib.h>
 #include <time.h>
 
 void	sorting__test()
@@ -151,6 +150,18 @@ void	user_input__test()
 			NULL,
 			"Invalid input: invalid atoi call"
 			);
+	test_user_input(
+			(char*[]){"file"},
+			1,
+			NULL,
+			"Invalid input: no input"
+			);
+	test_user_input(
+			(char*[]){"file", "--simple"},
+			2,
+			NULL,
+			"Invalid input: algo spec, no array"
+			);
 }
 
 void	full__test()
@@ -179,6 +190,18 @@ void	full__test()
 			"./file 0 -1 -9999 -9",
 			1,
 			"No algo spec, small negative stack"
+			);
+	test_full(
+			1,
+			"./file",
+			0,
+			"No input"
+			);
+	test_full(
+			2,
+			"./file --simple",
+			0,
+			"Algo spec, no array"
 			);
 }
 

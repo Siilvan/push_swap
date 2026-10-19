@@ -6,26 +6,11 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 23:55:57 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/17 13:16:17 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 17:31:45 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_intlstclear(t_intlist **lst)
-{
-	t_intlist	*temp1;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		temp1 = (*lst)->next;
-		free(*lst);
-		(*lst) = temp1;
-	}
-	*lst = 0;
-}
 
 int	ft_intlstsize(t_intlist *lst)
 {

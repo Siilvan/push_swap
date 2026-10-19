@@ -6,39 +6,90 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 13:13:38 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/17 16:29:07 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 18:52:53 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "push_swap.h"
+
+// void	algo_simple(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
+// {
+// 	int	bsize;
+// 	int	i;
+//
+// 	if (!stack_a || !stack_b || !*stack_a || *stack_b)
+// 		return ;
+// 	op_push_b(stack_a, stack_b, oparr);
+// 	bsize = 1;
+// 	while (*stack_a)
+// 	{
+// 		i = 0;
+// 		while ((*stack_a)->content < (*stack_b)->content && i < bsize)
+// 		{
+// 			op_rotate(NULL, stack_b, oparr);
+// 			i++;
+// 		}
+// 		op_push_b(stack_a, stack_b, oparr);
+// 		while (i-- > 0)
+// 			op_reverse_rotate(NULL, stack_b, oparr);
+// 		bsize++;
+// 	}
+// 	while (*stack_b)
+// 		op_push_a(stack_a, stack_b, oparr);
+// }
+//
+static int	ft_lstmin_and_size(t_intlist *stack_a, int *size)
+{
+	int	min_index;
+	int	min_val;
+
+	if (!stack_a || !size)
+	{
+		if (size)
+			*size = 0;
+		return (0);
+	}
+	min_index = 0;
+	*size = 0;
+	min_val = stack_a->content;
+	while (stack_a)
+	{
+		if (stack_a->content < min_val)
+		{
+			min_index = *size;
+			min_val = stack_a->content;
+		}
+		(*size)++;
+		stack_a = stack_a->next;
+	}
+	return (min_index);
+}
 
 void	algo_simple(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
 {
-	int	bsize;
-	int	i;
+	int	min_index;
+	int	a_size;
 
 	if (!stack_a || !stack_b || !*stack_a || *stack_b)
 		return ;
-	op_push_b(stack_a, stack_b, oparr);
-	bsize = 1;
 	while (*stack_a)
 	{
-		i = 0;
-		while ((*stack_a)->content < (*stack_b)->content && i < bsize)
-		{
-			op_rotate(NULL, stack_b, oparr);
-			i++;
-		}
+		min_index = ft_lstmin_and_size(*stack_a, &a_size);
+		if (min_index < a_size / 2)
+			while (min_index--)
+				op_rotate(stack_a, NULL, oparr);
+		else
+			while (a_size - min_index++)
+				op_reverse_rotate(stack_a, NULL, oparr);
 		op_push_b(stack_a, stack_b, oparr);
-		while (i-- > 0)
-			op_reverse_rotate(NULL, stack_b, oparr);
-		bsize++;
 	}
 	while (*stack_b)
 		op_push_a(stack_a, stack_b, oparr);
 }
 
-void	algo_adaptive(t_intlist **a, t_intlist **b, t_oparr **ops, int disorder)
+
+void	algo_adaptive(t_intlist **a, t_intlist **b, t_oparr **ops, double disorder)
 {
 	if (disorder < 0.2)
 		algo_simple(a, b, ops);

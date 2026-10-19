@@ -6,32 +6,11 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 11:43:11 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 13:57:38 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 17:31:17 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_cleanup(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr,
-		t_userinput **uinput)
-{
-	if (stack_a)
-		ft_intlstclear(stack_a);
-	if (stack_b)
-		ft_intlstclear(stack_b);
-	if (oparr)
-		clear_oparr(oparr);
-	if (uinput)
-		free_userinput(uinput);
-}
-
-int	error_exit(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr,
-		t_userinput **uinput)
-{
-	ft_cleanup(stack_a, stack_b, oparr, uinput);
-	ft_putendl_fd("Error", 2);
-	return (0);
-}
 
 int	ft_strcmp(char *s1, char *s2)
 {

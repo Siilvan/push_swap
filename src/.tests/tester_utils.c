@@ -131,9 +131,25 @@ int	test_full(int argc, const char *args, int expected, const char *name)
 		PRINT_ERR(ft_printf("INTERNAL ERROR\nfailure from `ft_split`\n"););
 		return (0);
 	}
+	if (!sort_stack(argc, split_args))
+	{
+		ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+		ft_freesplit(split_args);
+		if (expected)
+		{
+			PRINT_ERR(ft_printf("Sorting stack failed.\n"););
+			return (0);
+		}
+		else
+		{
+			PRINT_SUCCESS();
+			return (1);
+		}
+	}
 	if (!parse_input(argc, split_args, &uinput))
 	{
 		ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+		ft_freesplit(split_args);
 		if (expected)
 		{
 			PRINT_ERR(ft_printf("Input parsing failed.\n"););
@@ -148,6 +164,7 @@ int	test_full(int argc, const char *args, int expected, const char *name)
 	if (!select_algo(&stack_a, &stack_b, &oparr, &uinput))
 	{
 		ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+		ft_freesplit(split_args);
 		if (expected)
 		{
 			PRINT_ERR(ft_printf("Running algorithm failed.\n"););
@@ -161,6 +178,7 @@ int	test_full(int argc, const char *args, int expected, const char *name)
 	}
 	if (!is_stack_in_order(stack_a))
 	{
+		ft_freesplit(split_args);
 		PRINT_ERR(
 				ft_printf("Stack order is not right!\n");
 				print_stack(stack_a, "Stack");
@@ -169,6 +187,7 @@ int	test_full(int argc, const char *args, int expected, const char *name)
 		return (0);
 	}
 	ft_cleanup(&stack_a, &stack_b, &oparr, &uinput);
+	ft_freesplit(split_args);
 	PRINT_SUCCESS();
 	return (1);
 }

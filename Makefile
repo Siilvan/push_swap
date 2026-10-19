@@ -6,7 +6,7 @@
 #    By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/13 13:02:26 by sgroenve          #+#    #+#              #
-#    Updated: 2026/10/17 14:01:01 by sgroenve         ###   ########.fr        #
+#    Updated: 2026/10/19 17:38:42 by ngero            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS			= -Wall -Wextra -Werror $(INCLUDES)
 NAME			= push_swap
 SOURCES_DIR		= ./src
 SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c algorithms.c\
-med_algo.c final_result.c bench_result.c oparr_utils.c complex_algo.c digit_ranks.c main.c
+med_algo.c final_result.c bench_result.c oparr_utils.c complex_algo.c digit_ranks.c main.c freeing.c
 SOURCES			:= $(addprefix ./src/, $(SOURCES))
 OBJECTS			= $(SOURCES:.c=.o)
 FT_PRINTF_DIR	= ./libft
@@ -36,7 +36,7 @@ $(NAME): $(OBJECTS)
 other_libs:
 	$(MAKE) -C $(FT_PRINTF_DIR)
 
-test: CFLAGS = -Wall -Wextra -Werror $(INCLUDES) -g3 -DTESTING=1
+test: CFLAGS = -Wall -Wextra -Werror $(INCLUDES) -g3 -DTESTING=1 -fsanitize=address
 test: testclean other_libs $(OBJECTS) $(TEST_OBJECTS)
 	cc $(CFLAGS) -o $(NAME) $(OBJECTS) $(TEST_OBJECTS) $(FT_PRINTF)
 

@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:45 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 16:40:23 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 18:52:40 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void		algo_complex(t_intlist **a, t_intlist **b,
 // Adaptive algorithm
 char		*adaptive_choose(double disorder);
 void		algo_adaptive(t_intlist **a, t_intlist **b,
-				t_oparr **ops, int disorder);
+				t_oparr **ops, double disorder);
 
 // Computes the disorder of a stack
 double		compute_disorder(t_intlist *stack);
@@ -143,6 +143,7 @@ int			ft_sqrt(int nb);
 void		ft_printstack(t_intlist *stack);
 void		assign_rank(t_intlist *stack_a, int n);
 void		ft_printstack(t_intlist *stack);
+void		ft_freesplit(char **split);
 void		ft_cleanup(t_intlist **stack_a, t_intlist **stack_b,
 				t_oparr **oparr, t_userinput **uinput);
 int			error_exit(t_intlist **stack_a, t_intlist **stack_b,
