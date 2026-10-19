@@ -6,13 +6,23 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 12:55:54 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 13:51:58 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 10:47:24 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	algo_medium_prt1(t_intlist **a, t_intlist **b, t_oparr **oparr)
+int	chunk_size(int size)
+{
+	if (size <= 100)
+		return (size / 4);
+	else if (size <= 500)
+		return (size / 10);
+	else
+		return (size / 15);
+}
+
+void	assign_chunks(t_intlist **a, t_intlist **b, t_oparr **oparr)
 {
 	int	i;
 	int	chunk_size;
@@ -39,6 +49,43 @@ void	algo_medium_prt1(t_intlist **a, t_intlist **b, t_oparr **oparr)
 	}
 }
 
+int	find_index(t_intlist *stack, int target)
+{
+	int			idx;
+	t_intlist	*temp;
+
+	temp = stack;
+	idx = 0;
+	while (temp)
+	{
+		if (temp->rank == target)
+			return (idx);
+		temp = temp->next;
+		idx++;
+	}
+	return (-1);
+}
+
+void	push_to_a(t_intlist **a, t_intlist **b, t_oparr **oparr, int top_rank)
+{
+	int	index;
+	int	size;
+
+	size = ft_intlstsize(*b);
+	index = find_index(*b, top_rank);
+	if (index <= size / 2)
+	{
+		while ((*b)->rank != top_rank)
+			op_rotate(NULL, b, oparr);
+	}
+	else
+	{
+		while ((*b)->rank != top_rank)
+			op_reverse_rotate(NULL, b, oparr);
+	}
+	op_push_a(a, b, oparr);
+}
+
 void	algo_medium(t_intlist **a, t_intlist **b, t_oparr **oparr)
 {
 	int	nbr_amount;
@@ -49,17 +96,10 @@ void	algo_medium(t_intlist **a, t_intlist **b, t_oparr **oparr)
 	nbr_amount = ft_intlstsize(*a);
 	top_rank = nbr_amount - 1;
 	assign_rank(*a, nbr_amount);
-	algo_medium_prt1(a, b, oparr);
+	assign_chunks(a, b, oparr);
 	while (*b)
 	{
-		if ((*b)->rank == top_rank)
-		{
-			op_push_a(a, b, oparr);
-			top_rank--;
-		}
-		else
-			op_rotate(NULL, b, oparr);
-		if (top_rank < 0)
-			break ;
+		push_to_a(a, b, oparr, top_rank);
+		top_rank--;		
 	}
 }

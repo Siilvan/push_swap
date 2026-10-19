@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 16:06:18 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 18:02:23 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/19 09:38:51 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	print_result(t_oparr *oparr)
 		}
 		temp = temp->next;
 	}
+	free(op_names);
 	return (1);
 }
 
