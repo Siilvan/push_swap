@@ -6,13 +6,13 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 12:55:54 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/19 11:08:13 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/20 18:05:31 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	chunk_size(int size)
+int	size_chunk(int size)
 {
 	if (size <= 100)
 		return (size / 4);
@@ -30,7 +30,7 @@ void	assign_chunks(t_intlist **a, t_intlist **b, t_oparr **oparr)
 
 	i = 0;
 	current_chunk = 1;
-	chunk_size = ft_sqrt(ft_intlstsize(*a));
+	chunk_size = size_chunk(ft_intlstsize(*a));
 	while (*a)
 	{
 		if ((*a)->rank < current_chunk * chunk_size)
