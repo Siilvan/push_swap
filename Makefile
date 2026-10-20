@@ -12,7 +12,7 @@
 
 CC				= cc
 INCLUDES		= -I./include/ -I./libft/include
-CFLAGS			= -Wall -Wextra -Werror $(INCLUDES) -g3
+CFLAGS			= -Wall -Wextra -Werror $(INCLUDES)
 NAME			= push_swap
 SOURCES_DIR		= ./src
 SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c \
