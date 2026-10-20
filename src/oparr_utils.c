@@ -33,6 +33,8 @@ t_oparr	*ft_oparrlast(t_oparr *lst)
 {
 	t_oparr	*temp;
 
+	if (!lst)
+		return (0);
 	temp = lst;
 	while (temp->next != NULL)
 	{
@@ -78,6 +80,8 @@ int	ft_add_op(t_oparr **node, int op)
 	t_oparr	*new;
 	t_oparr	*last;
 
+	if (!node || !*node)
+		return (0);
 	last = ft_oparrlast(*node);
 	new = NULL;
 	if (last->n_op == 2000)
@@ -90,5 +94,5 @@ int	ft_add_op(t_oparr **node, int op)
 	}
 	last->arr[last->n_op] = op;
 	last->n_op += 1;
-	return (0);
+	return (1);
 }

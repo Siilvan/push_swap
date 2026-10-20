@@ -4,3 +4,5 @@ args.txt
 *.a
 compile_flags.txt
 push_swap
+checker
+test_checker.sh

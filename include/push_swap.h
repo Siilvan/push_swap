@@ -57,7 +57,7 @@ typedef struct s_userinput
 // Creates a linked list from an array of integers.
 t_intlist	*get_stack_from_arr(int *arr, size_t size);
 // strcmp
-int			ft_strcmp(char *s1, char *s2);
+int			ft_strcmp(const char *s1, const char *s2);
 
 // Linked list utils
 
