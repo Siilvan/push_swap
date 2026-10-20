@@ -14,16 +14,7 @@
 #include "stdlib.h"
 #include <stddef.h>
 
-void	free_userinput(t_userinput **uinput)
-{
-	if (!uinput || !*uinput)
-		return ;
-	free((*uinput)->arr);
-	free(*uinput);
-	*uinput = 0;
-}
-
-int	handle_flag(char *arg, char **mode, int *bench)
+static int	handle_flag(char *arg, char **mode, int *bench)
 {
 	if (!ft_strcmp(arg, "--bench"))
 		*bench = 1;
@@ -36,7 +27,7 @@ int	handle_flag(char *arg, char **mode, int *bench)
 	return (1);
 }
 
-int	check_number_format(char *str)
+static int	check_number_format(char *str)
 {
 	int	i;
 
@@ -54,28 +45,42 @@ int	check_number_format(char *str)
 	return (1);
 }
 
+static int	parse_number(char *str, int *arr, size_t size, int *number)
+{
+	size_t	i;
+
+	if (!check_number_format(str))
+		return (0);
+	*number = ft_atoi(str);
+	i = 0;
+	while (i < size)
+		if (arr[i++] == *number)
+			return (0);
+	return (1);
+}
+
 int	get_numbers_array(size_t size, char **argv, int **arr)
 {
 	size_t	i;
-	size_t	dup_i;
-	int		number;
 
 	i = 0;
+	if (size == 1)
+		argv = ft_split(argv[0], ' ');
 	*arr = malloc(size * sizeof(int));
 	if (!*arr)
 		return (0);
-	while (i < size)
+	while ((size == 1 && argv[i]) || i < size)
 	{
-		if (!check_number_format(argv[i]))
+		if (!parse_number(argv[i], *arr, i, &(*arr)[i]))
+		{
+			if (size == 1)
+				ft_freesplit(argv);
 			return (0);
-		number = ft_atoi(argv[i]);
-		dup_i = 0;
-		while (dup_i < i)
-			if ((*arr)[dup_i++] == number)
-				return (0);
-		(*arr)[i] = ft_atoi(argv[i]);
+		}
 		i++;
 	}
+	if (size == 1)
+		ft_freesplit(argv);
 	return (1);
 }
 

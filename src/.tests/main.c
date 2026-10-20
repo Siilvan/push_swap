@@ -121,6 +121,18 @@ void	user_input__test()
 			"bench, no algo spec and valid array"
 			);
 	test_user_input(
+			(char*[]){"file", "3"},
+			2,
+			&(t_userinput){0, "adaptive", (int[]){3}, 1},
+			"no bench no spec, Single number array"
+			);
+	test_user_input(
+			(char*[]){"file", "--complex", "--simple", "3"},
+			4,
+			&(t_userinput){0, "simple", (int[]){3}, 1},
+			"Contradicting flags"
+			);
+	test_user_input(
 			(char*[]){"file"},
 			1,
 			NULL,
@@ -161,6 +173,18 @@ void	user_input__test()
 			2,
 			NULL,
 			"Invalid input: algo spec, no array"
+			);
+	test_user_input(
+			(char*[]){"file", "--bench", "--penis", "--simple", "3"},
+			5,
+			NULL,
+			"Invalid input: fake flags, pt.1"
+			);
+	test_user_input(
+			(char*[]){"file", "--ngero", "3"},
+			3,
+			NULL,
+			"Invalid input: fake flags, pt.2"
 			);
 }
 

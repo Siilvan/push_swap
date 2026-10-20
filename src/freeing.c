@@ -62,3 +62,12 @@ void	ft_intlstclear(t_intlist **lst)
 	}
 	*lst = 0;
 }
+
+void	free_userinput(t_userinput **uinput)
+{
+	if (!uinput || !*uinput)
+		return ;
+	free((*uinput)->arr);
+	free(*uinput);
+	*uinput = 0;
+}

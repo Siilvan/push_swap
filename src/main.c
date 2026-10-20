@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv[])
-{
-	if (!sort_stack(argc, argv))
-		return (1);
-	return (0);
-}
+// int	main(int argc, char *argv[])
+// {
+// 	if (!sort_stack(argc, argv))
+// 		return (1);
+// 	return (0);
+// }
 
 int	sort_stack(int argc, char *argv[])
 {
