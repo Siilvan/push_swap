@@ -75,6 +75,8 @@ int	get_numbers_array(size_t size, char **argv, int **arr)
 		{
 			if (size == 1)
 				ft_freesplit(argv);
+			free(*arr);
+			*arr = 0;
 			return (0);
 		}
 		i++;

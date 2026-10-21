@@ -10,11 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "push_swap.h"
+#include "checker.h"
 
-int	checker_exit(const char *n, int code)
+int	checker_exit(const char *n, int code, t_intlist **stack_a,
+		t_intlist **stack_b)
 {
+	if (stack_a)
+		ft_intlstclear(stack_a);
+	if (stack_b)
+		ft_intlstclear(stack_b);
 	if (code == 1)
 		ft_fdprintf(2, "%s", n);
 	else
@@ -23,7 +27,7 @@ int	checker_exit(const char *n, int code)
 }
 
 int	execute_operation(t_intlist **stack_a, t_intlist **stack_b,
-			char *op)
+			const char *op)
 {
 	if (!ft_strcmp(op, "sa\n"))
 		return (op_swap(*stack_a, NULL, NULL), 1);

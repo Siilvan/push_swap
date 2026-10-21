@@ -10,35 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
-// void	algo_simple(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr)
-// {
-// 	int	bsize;
-// 	int	i;
-//
-// 	if (!stack_a || !stack_b || !*stack_a || *stack_b)
-// 		return ;
-// 	op_push_b(stack_a, stack_b, oparr);
-// 	bsize = 1;
-// 	while (*stack_a)
-// 	{
-// 		i = 0;
-// 		while ((*stack_a)->content < (*stack_b)->content && i < bsize)
-// 		{
-// 			op_rotate(NULL, stack_b, oparr);
-// 			i++;
-// 		}
-// 		op_push_b(stack_a, stack_b, oparr);
-// 		while (i-- > 0)
-// 			op_reverse_rotate(NULL, stack_b, oparr);
-// 		bsize++;
-// 	}
-// 	while (*stack_b)
-// 		op_push_a(stack_a, stack_b, oparr);
-// }
-//
 static int	ft_lstmin_and_size(t_intlist *stack_a, int *size)
 {
 	int	min_index;

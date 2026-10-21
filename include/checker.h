@@ -13,9 +13,11 @@
 #ifndef CHECKER_H
 # define CHECKER_H
 # include "push_swap.h"
+#include "libft.h"
 # include "get_next_line.h"
 
-int	checker_exit(const char *n, int code);
+int	checker_exit(const char *n, int code, t_intlist **stack_a,
+		t_intlist **stack_b);
 int	execute_operation(t_intlist **stack_a, t_intlist **stack_b,
 		const char *op);
 
