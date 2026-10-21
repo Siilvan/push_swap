@@ -43,4 +43,3 @@ t_intlist	*get_stack_from_arr(int *arr, size_t size)
 	}
 	return (lst);
 }
-

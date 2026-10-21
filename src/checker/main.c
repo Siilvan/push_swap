@@ -54,6 +54,7 @@ int	main(int ac, char **av)
 	t_intlist	*stack_a;
 	t_intlist	*stack_b;
 	char		*line;
+
 	if (ac < 2)
 		return (0);
 	stack_a = get_stack_from_input(ac, av);
