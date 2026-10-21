@@ -57,7 +57,7 @@ int	select_algo(t_intlist **stack_a, t_intlist **stack_b, t_oparr **oparr,
 	else if (!ft_strcmp((*user_input)->mode, "adaptive") && disorder)
 		algo_adaptive(stack_a, stack_b, oparr, disorder);
 	if ((*user_input)->bench == 1)
-		bench_result(oparr, (*user_input)->mode, disorder, TESTING);
-	manage_result(oparr, TESTING);
+		bench_result(oparr, (*user_input)->mode, disorder);
+	manage_result(oparr);
 	return (1);
 }

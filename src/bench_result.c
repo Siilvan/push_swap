@@ -48,15 +48,13 @@ int	ops_count(t_oparr **oparr)
 	return (total);
 }
 
-void	bench_result(t_oparr **oparr, char *mode, double disorder, int t)
+void	bench_result(t_oparr **oparr, char *mode, double disorder)
 {
 	char	*pre;
 	char	*adaptive;
 	int		op_count[11];
 	int		total_ops;
 
-	if (t)
-		return ;
 	ft_memset(op_count, 0, 44);
 	bench_counter(oparr, op_count);
 	pre = "[bench] ";

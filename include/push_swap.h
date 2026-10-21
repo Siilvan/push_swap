@@ -23,9 +23,6 @@
 # define RRA 8
 # define RRB 9
 # define RRR 10
-# ifndef TESTING
-#  define TESTING 0
-# endif
 # include <stddef.h>
 # include <stdlib.h>
 # include "libft.h"
@@ -134,10 +131,9 @@ int			ft_add_op(t_oparr **node, int op);
 char		*adaptive_choose(double disorder);
 
 // result
-void		manage_result(t_oparr **oparr, int testing);
+void		manage_result(t_oparr **oparr);
 // benchmark
-void		bench_result(t_oparr **oparr, char *mode, double disorder,
-				int t);
+void		bench_result(t_oparr **oparr, char *mode, double disorder);
 
 //helpers
 void		ft_printstack(t_intlist *stack);
