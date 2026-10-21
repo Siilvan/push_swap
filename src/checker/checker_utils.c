@@ -6,7 +6,7 @@
 /*   By: ngero <ngero@student.codam.nl>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 20:02:21 by ngero             #+#    #+#             */
-/*   Updated: 2026/10/19 20:06:16 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/21 15:02:59 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	checker_exit(const char *n, int code, t_intlist **stack_a,
 	return (code);
 }
 
-int	execute_operation(t_intlist **stack_a, t_intlist **stack_b,
-			const char *op)
+int	execute_operation(t_intlist **stack_a, t_intlist **stack_b, const char *op)
 {
 	if (!ft_strcmp(op, "sa\n"))
 		return (op_swap(*stack_a, NULL, NULL), 1);

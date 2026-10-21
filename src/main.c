@@ -6,11 +6,12 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:44:52 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/20 18:03:59 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/21 15:43:00 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdlib.h>
 
 int	main(int argc, char *argv[])
 {
@@ -21,11 +22,16 @@ int	main(int argc, char *argv[])
 
 int	sort_stack(int argc, char *argv[])
 {
-	t_intlist	*stack_a;
-	t_intlist	*stack_b;
-	t_oparr		*oparr;
-	t_userinput	*user_input;
+	static t_intlist	*stack_a;
+	static t_intlist	*stack_b;
+	static t_oparr		*oparr;
+	static t_userinput	*user_input;
 
+	if (argc == 0 && !argv)
+	{
+		error_exit(&stack_a, &stack_b, &oparr, &user_input);
+		exit(1);
+	}
 	stack_a = 0;
 	stack_b = 0;
 	oparr = 0;

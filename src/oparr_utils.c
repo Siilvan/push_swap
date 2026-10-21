@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 16:09:23 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/17 17:54:02 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/21 15:43:51 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_add_op(t_oparr **node, int op)
 	{
 		new = oparrnew();
 		if (!new)
-			return (-1);
+			sort_stack(0, NULL);
 		ft_oparr_back(node, new);
 		last = new;
 	}
