@@ -44,12 +44,3 @@ t_intlist	*get_stack_from_arr(int *arr, size_t size)
 	return (lst);
 }
 
-int	ft_sqrt(int nb)
-{
-	int	res;
-
-	res = 0;
-	while (nb > (res * res))
-		res++;
-	return (res);
-}

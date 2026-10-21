@@ -66,7 +66,7 @@ int	get_numbers_array(size_t size, char **argv, int **arr)
 	i = 0;
 	if (size == 1)
 		argv = ft_split(argv[0], ' ');
-	*arr = malloc(size * sizeof(int));
+	*arr = malloc(get_numbers_size(size, argv) * sizeof(int));
 	if (!*arr)
 		return (0);
 	while ((size == 1 && argv[i]) || i < size)

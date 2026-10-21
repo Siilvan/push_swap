@@ -125,6 +125,7 @@ int			get_numbers_array(size_t size, char **argv, int **arr);
 // Selects the appropriate algorithm
 int			select_algo(t_intlist **stack_a, t_intlist **stack_b,
 				t_oparr **oparr, t_userinput **user_input);
+size_t		get_numbers_size(size_t size, char **av);
 
 // Operation array stuff
 t_oparr		*oparrnew(void);
@@ -139,7 +140,6 @@ void		bench_result(t_oparr **oparr, char *mode, double disorder,
 				int t);
 
 //helpers
-int			ft_sqrt(int nb);
 void		ft_printstack(t_intlist *stack);
 void		assign_rank(t_intlist *stack_a, int n);
 void		ft_printstack(t_intlist *stack);

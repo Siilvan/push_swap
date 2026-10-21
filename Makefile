@@ -17,7 +17,7 @@ NAME			= push_swap
 SOURCES_DIR		= ./src
 SOURCES			= disorder.c helpers.c lst_utils2.c lst_utils.c operations.c operations_r.c parse_input.c \
 				  algorithms.c med_algo.c final_result.c bench_result.c oparr_utils.c complex_algo.c \
-				  digit_ranks.c main.c freeing.c
+				  digit_ranks.c main.c freeing.c parse_input_utils.c
 SOURCES			:= $(addprefix ./src/, $(SOURCES))
 OBJECTS			= $(SOURCES:.c=.o)
 LIBFT_DIR		= ./libft
