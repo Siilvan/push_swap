@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 09:46:19 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/21 15:06:19 by ngero            ###   ########.fr       */
+/*   Updated: 2026/10/21 16:12:47 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -48,14 +48,27 @@ static int	check_number_format(char *str)
 static int	parse_number(char *str, int *arr, size_t size, int *number)
 {
 	size_t	i;
+	char	*itoa_res;
 
 	if (!check_number_format(str))
 		return (0);
 	*number = ft_atoi(str);
+	itoa_res = ft_itoa(*number);
+	if (ft_strcmp(itoa_res, str))
+	{
+		free(itoa_res);
+		return (0);
+	}
 	i = 0;
 	while (i < size)
+	{
 		if (arr[i++] == *number)
+		{
+			free(itoa_res);
 			return (0);
+		}
+	}
+	free(itoa_res);
 	return (1);
 }
 

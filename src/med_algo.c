@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 12:55:54 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/20 18:05:31 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/21 16:08:05 by ngero            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int	size_chunk(int size)
 {
-	if (size <= 100)
+	if (size <= 3)
+		return (size);
+	else if (size <= 100)
 		return (size / 4);
 	else if (size <= 500)
 		return (size / 10);
